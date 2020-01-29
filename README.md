@@ -1,3 +1,19 @@
+# --- Hack.Diversity React/Redux Template ---
+
+## Getting Started
+Some _really_ great instructions and stuff...eventually.
+
+### Installing Node Packages
+TBD:
+
+### Setting up MongoDB
+TBD:
+```
+mkdir -p data/db
+```
+
+
+# --- From "Create React App" README ---
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
