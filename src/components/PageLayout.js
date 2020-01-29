@@ -7,5 +7,5 @@ export const PageLayout = () =>
       <h1 className="page-layout--name">Hack.Diversity React/Redux Template</h1>
       <p className="page-layout--description">TBD</p>
     </div>
-    <img src={logo} className="app-logo" alt="React Logo" />
+    <img src={logo} className="app--logo" alt="React Logo" />
   </div>

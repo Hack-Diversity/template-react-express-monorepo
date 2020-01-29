@@ -30,9 +30,9 @@ class App extends Component {
 
     return (
       <Router>
-        <div className="App">
+        <div className="app--main">
           <PageLayout />
-          <div className="ViewContainer">
+          <div className="view-container">
             { publicViews }
           </div>
         </div>
