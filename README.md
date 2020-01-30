@@ -3,14 +3,56 @@
 ## Getting Started
 Some _really_ great instructions and stuff...eventually.
 
-### Installing Node Packages
+## Installing Node Packages
 TBD:
 
-### Setting up MongoDB
-TBD:
+## Starting the Node Server
 ```
-mkdir -p data/db
+$ node index.js
 ```
+
+```
+$ nodemon index.js
+```
+
+## Setting up MongoDB
+
+### Install with Homebrew (MacOSx)
+If you haven't previously installed mongodb:
+```
+$ brew tap mongodb/brew
+$ brew install mongodb-community
+$ brew services start mongodb-community
+```
+
+If you have a previous version of mongodb
+```
+$ brew services stop mongodb
+$ brew uninstall mongodb
+
+$ brew tap mongodb/brew
+$ brew install mongodb-community
+$ brew services start mongodb-community
+```
+
+Create directory for storing data:
+```
+$ mkdir -p /data/db
+```
+
+Execute MongoDB as service:
+```
+$ brew services start mongodb
+```
+
+Create and name database:
+```
+$ mongo
+> use database-name
+```
+
+## References
+- [How to create your first MERN (MongoDB, Express JS, React JS and Node JS) Stack](https://medium.com/swlh/how-to-create-your-first-mern-mongodb-express-js-react-js-and-node-js-stack-7e8b20463e66)
 
 
 # --- From "Create React App" README ---
