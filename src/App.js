@@ -7,11 +7,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // Constants/Styles
 import * as actions from './actions';
 import * as routes from './constants';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
 // Static/Stateless
-import { PageLayout } from './components/PageLayout'
-import { Welcome } from './components/Welcome';
+import { NavBar, PageLayout, Welcome } from './components';
 
 // Content
 // import ItemsPage from './containers/ItemsPage';
@@ -26,14 +26,15 @@ class App extends Component {
         {/* <Route exact path={routes.ITEMS} component={ItemsPage} />
         <Route exact path={routes.ITEM} component={ItemPage} /> */}
       </React.Fragment>
-    )
+    );
 
     return (
       <Router>
+        <NavBar />
         <div className="app--main">
           <PageLayout />
           <div className="view-container">
-            { publicViews }
+            {publicViews}
           </div>
         </div>
       </Router>
@@ -41,9 +42,7 @@ class App extends Component {
   };
 };
 
-const mapStateToProps = state => {
-  return { ...state }
-}
+const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

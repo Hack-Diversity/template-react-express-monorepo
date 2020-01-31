@@ -1,5 +1,6 @@
+/* eslint-disable semi */
 import React from 'react';
-import logo from '../styles/assets/logo.svg';
+import Logo from './Logo';
 
 export const PageLayout = () =>
   <div className="page-layout--header">
@@ -7,5 +8,5 @@ export const PageLayout = () =>
       <h1 className="page-layout--name">Hack.Diversity React/Redux Template</h1>
       <p className="page-layout--description">TBD</p>
     </div>
-    <img src={logo} className="app--logo" alt="React Logo" />
+    <Logo />
   </div>

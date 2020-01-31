@@ -1,3 +1,4 @@
+/* eslint-disable no-undef, arrow-body-style */
 const Item = require('../models/item-model');
 
 createItem = (req, res) => {
@@ -34,7 +35,7 @@ createItem = (req, res) => {
         message: 'Item not created!',
       });
     });
-}
+};
 
 updateItem = async (req, res) => {
   const body = req.body;
@@ -60,11 +61,12 @@ updateItem = async (req, res) => {
     item
       .save()
       .then(() => {
-        return res.status(200).json({
-          success: true,
-          id: item._id,
-          message: 'Item updated!',
-        });
+        return res.status(200)
+          .json({
+            success: true,
+            id: item._id,
+            message: 'Item updated!',
+          });
       })
       .catch(error => {
         return res.status(404).json({
@@ -73,7 +75,7 @@ updateItem = async (req, res) => {
         });
       });
   });
-}
+};
 
 deleteItem = async (req, res) => {
   await Item.findOneAndDelete({ _id: req.params.id }, (err, item) => {
@@ -82,7 +84,7 @@ deleteItem = async (req, res) => {
         .status(400)
         .json({
           succes: false,
-          error: err
+          error: err,
         });
     }
 
@@ -102,7 +104,7 @@ deleteItem = async (req, res) => {
         data: item,
       });
   }).catch(err => console.error(err));
-}
+};
 
 getItemById = async (req, res) => {
   await Item.find({ _id: req.params.id }, (err, item) => {
@@ -111,7 +113,7 @@ getItemById = async (req, res) => {
         .status(400)
         .json({
           success: false,
-          error: err
+          error: err,
         });
     }
     if (!items.length) {
@@ -119,17 +121,17 @@ getItemById = async (req, res) => {
         .status(404)
         .json({
           success: false,
-          error: 'Item not found'
+          error: 'Item not found',
         });
     }
     return res
       .status(200)
       .json({
         success: true,
-        data: item
+        data: item,
       });
   }).catch(err => console.error(err));
-}
+};
 
 getItems = async (req, res) => {
   await Item.find({}, (err, items) => {
@@ -138,7 +140,7 @@ getItems = async (req, res) => {
         .status(400)
         .json({
           success: false,
-          error: err
+          error: err,
         });
     }
     if (!items.length) {
@@ -146,17 +148,17 @@ getItems = async (req, res) => {
         .status(404)
         .json({
           success: false,
-          error: 'Item not found'
+          error: 'Item not found',
         });
     }
     return res
       .status(200)
       .json({
         success: true,
-        data: items
+        data: items,
       });
   }).catch(err => console.error(err));
-}
+};
 
 module.exports = {
   createItem,
@@ -164,4 +166,4 @@ module.exports = {
   deleteItem,
   getItemById,
   getItems,
-}
+};

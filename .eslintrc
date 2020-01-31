@@ -1,7 +1,10 @@
 {
-  "extends": "@upstatement",
+  "extends": "@upstatement/eslint-config/react",
   "env": {
     "browser": true,
     "node": true
+  },
+  "rules": {
+    "arrow-body-style": "warn"
   }
 }
