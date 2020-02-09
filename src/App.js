@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 // Constants/Styles
@@ -12,6 +12,7 @@ import './styles/App.css';
 
 // Static/Stateless
 import { NavBar, PageLayout, Welcome } from './components';
+import { ItemsList, ItemInsert, ItemUpdate } from '../pages';
 
 // Content
 // import ItemsPage from './containers/ItemsPage';
@@ -21,11 +22,17 @@ class App extends Component {
   render() {
 
     const publicViews = (
-      <React.Fragment>
+      <Switch>
+        {/* <React.Fragment> */}
         <Route exact path={routes.HOME} component={Welcome} />
+        <Route exact path={routes.ITEMS} component={ItemsList} />
+        <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
+        <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
+        {/* <Route exact path={routes.ITEM_DELETE} component={ItemDelete} /> */}
         {/* <Route exact path={routes.ITEMS} component={ItemsPage} />
         <Route exact path={routes.ITEM} component={ItemPage} /> */}
-      </React.Fragment>
+        {/* </React.Fragment> */}
+      </Switch>
     );
 
     return (
