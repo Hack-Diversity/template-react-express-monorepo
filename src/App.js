@@ -12,7 +12,7 @@ import './styles/App.css';
 
 // Static/Stateless
 import { NavBar, PageLayout, Welcome } from './components';
-import { ItemsList, ItemInsert, ItemUpdate } from '../pages';
+import { ItemsList, ItemInsert, ItemUpdate } from './pages';
 
 // Content
 // import ItemsPage from './containers/ItemsPage';
