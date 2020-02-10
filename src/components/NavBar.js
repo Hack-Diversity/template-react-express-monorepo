@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// import Logo from './Logo';
+import Logo from './Logo';
 import Links from './Links';
 
 const Container = styled.div.attrs({
@@ -14,12 +14,17 @@ const Nav = styled.nav.attrs({
   margin-bottom: 20px;
 `;
 
+const logoStyles = {
+  height: '40px',
+  width: '40px',
+};
+
 class NavBar extends Component {
   render() {
     return (
       <Container>
         <Nav>
-          {/* <Logo /> */}
+          <Logo style={logoStyles} />
           <Links />
         </Nav>
       </Container>
