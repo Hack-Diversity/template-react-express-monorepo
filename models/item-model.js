@@ -6,7 +6,7 @@ const Item = new Schema(
     name: { type: String, required: true },
     timeframe: { type: [String], required: false },
     priority: { type: Number, required: false },
-    content: { type: String, required: true }
+    content: { type: String, required: true },
   },
   { timestamps: true },
 );
