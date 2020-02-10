@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
+import ReactTable from 'react-table-6';
 import api from '../api';
 
 import styled from 'styled-components';
 
-// import 'react-table/react-table.css';
+import 'react-table-6/react-table.css';
 
 const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
