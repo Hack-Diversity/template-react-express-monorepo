@@ -1,6 +1,60 @@
 /* eslint-disable no-undef, arrow-body-style */
 const Item = require('../models/item-model');
 
+getItems = async (req, res) => {
+  await Item.find({}, (err, items) => {
+    if (err) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: err,
+        });
+    }
+    if (!items.length) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          error: 'Item not found',
+        });
+    }
+    return res
+      .status(200)
+      .json({
+        success: true,
+        data: items,
+      });
+  }).catch(err => console.error(err));
+};
+
+getItemById = async (req, res) => {
+  await Item.find({ _id: req.params.id }, (err, item) => {
+    if (err) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          error: err,
+        });
+    }
+    if (!items.length) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          error: 'Item not found',
+        });
+    }
+    return res
+      .status(200)
+      .json({
+        success: true,
+        data: item,
+      });
+  }).catch(err => console.error(err));
+};
+
 createItem = (req, res) => {
   const body = req.body;
 
@@ -106,64 +160,10 @@ deleteItem = async (req, res) => {
   }).catch(err => console.error(err));
 };
 
-getItemById = async (req, res) => {
-  await Item.find({ _id: req.params.id }, (err, item) => {
-    if (err) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          error: err,
-        });
-    }
-    if (!items.length) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          error: 'Item not found',
-        });
-    }
-    return res
-      .status(200)
-      .json({
-        success: true,
-        data: item,
-      });
-  }).catch(err => console.error(err));
-};
-
-getItems = async (req, res) => {
-  await Item.find({}, (err, items) => {
-    if (err) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          error: err,
-        });
-    }
-    if (!items.length) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          error: 'Item not found',
-        });
-    }
-    return res
-      .status(200)
-      .json({
-        success: true,
-        data: items,
-      });
-  }).catch(err => console.error(err));
-};
-
 module.exports = {
+  getItems,
+  getItemById,
   createItem,
   updateItem,
   deleteItem,
-  getItemById,
-  getItems,
 };
