@@ -8,7 +8,7 @@ TBD:
 
 ## Starting the Node Server
 ```
-$ node index.js
+$ node server/index.js
 ```
 
 ```

@@ -15,14 +15,15 @@ const Wrapper = styled.div.attrs({
 
 const Label = styled.label`
   margin: 5px;
-  max-width: 75%;
+  max-width: 30%;
 `;
 
 const InputText = styled.input.attrs({
   className: 'form-control',
 })`
   margin: 5px auto;
-  max-width: 75%;
+  max-width: 30%;
+  text-align: center;
 `;
 
 const Button = styled.button.attrs({

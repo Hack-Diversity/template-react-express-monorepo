@@ -10,18 +10,19 @@ const Wrapper = styled.a.attrs({
 
 class Logo extends Component {
   render() {
-    const { style } = this.props;
+    const { linkStyles, logoStyles } = this.props;
 
     return (
-      <Wrapper href="https://localtest:8000">
-        <img src={logo} className="app--logo" style={style} alt="React Logo" />
+      <Wrapper href="https://localtest:8000" style={linkStyles}>
+        <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" />
       </Wrapper>
     );
   }
 }
 
 Logo.propTypes = {
-  style: PropTypes.object,
+  linkStyles: PropTypes.object,
+  logoStyles: PropTypes.object,
 };
 
 export default Logo;
