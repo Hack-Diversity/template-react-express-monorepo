@@ -7,12 +7,17 @@ Some _really_ great instructions and stuff...eventually.
 TBD:
 
 ## Starting the Node Server
+In new tab/window:
 ```
-$ node server/index.js
+$ cd server/
 ```
-
+then run either:
 ```
-$ nodemon index.js
+$ node index.js
+```
+or:
+```
+$ npx nodemon index.js
 ```
 
 ## Setting up MongoDB
