@@ -6,20 +6,6 @@ Some _really_ great instructions and stuff...eventually.
 ## Installing Node Packages
 TBD:
 
-## Starting the Node Server
-In new tab/window:
-```
-$ cd server/
-```
-then run either:
-```
-$ node index.js
-```
-or:
-```
-$ npx nodemon index.js
-```
-
 ## Setting up MongoDB
 
 ### Install with Homebrew (MacOSx)
@@ -48,12 +34,27 @@ $ mkdir -p /data/db
 Execute MongoDB as service:
 ```
 $ brew services start mongodb
+// this may not still be relevant?
 ```
 
 Create and name database:
 ```
 $ mongo
 > use database-name
+```
+
+## Starting the Node Server
+In new tab/window:
+```
+$ cd server/
+```
+then run either:
+```
+$ node index.js
+```
+or:
+```
+$ npx nodemon index.js
 ```
 
 ## References

@@ -63,7 +63,7 @@ class ItemInsert extends Component {
     const priority = event.target.validity.valid
       ? event.target.value
       : this.state.priority;
-    
+
     this.setState({ priority });
   }
 
@@ -78,17 +78,22 @@ class ItemInsert extends Component {
     // const payload = { name, priority, content, timeframe: arrayTime };
     const payload = { name, timeframe, priority, content };
 
-    await api.insertItem(payload).then(res => {
-      if (res) {
-        window.alert('Movie inserted successfully');
-        this.setState({
-          name: '',
-          timeframe: '',
-          priority: 0,
-          content: '',
-        });
-      }
-    });
+    await api.insertItem(payload)
+      .then(res => {
+        if (res) {
+          window.alert('Movie inserted successfully');
+          this.setState({
+            name: '',
+            timeframe: '',
+            priority: 0,
+            content: '',
+          });
+        }
+      })
+      .catch(e => {
+        console.log(e);
+        return e;
+      });
   }
 
   render() {
@@ -97,7 +102,7 @@ class ItemInsert extends Component {
     return (
       <Wrapper>
         <Title>Create Item</Title>
-        
+
         <Label>Name: </Label>
         <InputText
           type="text"
@@ -123,7 +128,7 @@ class ItemInsert extends Component {
           value={priority}
           onChange={this.handleChangeInputPriority}
         />
-        
+
         <Label>Content: </Label>
         <InputText
           type="textarea"

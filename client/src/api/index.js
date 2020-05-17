@@ -1,7 +1,12 @@
+import https from 'https';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://localhost:3000/api',
+  baseURL: 'http://localhost:3000/api',
+  hostname: 'http://localhost:3000/',
+  httpsAgent: https.Agent({
+    rejectUnauthorized: false,
+  }),
 });
 
 export const getAllItems = payload => api.get(`/items`, payload);
