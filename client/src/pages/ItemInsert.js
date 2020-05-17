@@ -81,7 +81,7 @@ class ItemInsert extends Component {
     await api.insertItem(payload)
       .then(res => {
         if (res) {
-          window.alert('Movie inserted successfully');
+          window.alert('Item inserted successfully');
           this.setState({
             name: '',
             timeframe: '',

@@ -46,7 +46,7 @@ class DeleteItem extends Component {
         `Do you want to permanently delete this item? ${this.props.id}`,
       )
     ) {
-      api.deleteMovieById(this.props.id);
+      api.deleteItemById(this.props.id);
       window.location.reload();
     }
 
