@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ReactTable from 'react-table-6';
+import { DeleteItem, UpdateItem } from '../components/items';
 import api from '../api';
 
 import styled from 'styled-components';
@@ -10,56 +10,6 @@ import 'react-table-6/react-table.css';
 const Wrapper = styled.div`
   padding: 0 40px 40px 40px;
 `;
-
-const Update = styled.div`
-  color: #ef9b0f;
-  cursor: pointer;
-`;
-
-const Delete = styled.div`
-  color: #ff0000;
-  cursor: pointer;
-`;
-
-class UpdateItem extends Component {
-  updateUser = event => {
-    event.preventDefault();
-
-    window.location.href = `/items/update/${this.props.id}`;
-  }
-
-  render() {
-    return <Update onClick={this.updateUser}>Update Item</Update>;
-  }
-}
-
-UpdateItem.propTypes = {
-  id: PropTypes.number,
-};
-
-class DeleteItem extends Component {
-  deleteUser = event => {
-    event.preventDefault();
-
-    if (
-      window.confirm(
-        `Do you want to permanently delete this item? ${this.props.id}`,
-      )
-    ) {
-      api.deleteMovieById(this.props.id);
-      window.location.reload();
-    }
-
-  }
-
-  render() {
-    return <Delete onClick={this.deleteUser}>Delete Item</Delete>;
-  }
-}
-
-DeleteItem.propTypes = {
-  id: PropTypes.number,
-};
 
 class ItemsList extends Component {
   constructor(props) {
