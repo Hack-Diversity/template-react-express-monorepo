@@ -18,14 +18,14 @@ class DeleteItem extends Component {
           `Do you want to permanently delete this item? ${this.props.id}`,
         )
       ) {
-        api.deleteMovieById(this.props.id);
+        api.deleteItemById(this.props.id);
         window.location.reload();
       }
 
     }
 
     render() {
-      return <Delete onClick={this.deleteUser}>Delete Item</Delete>;
+      return <Delete onClick={this.confirmDeleteItem}>Delete Item</Delete>;
     }
 }
 
