@@ -1,5 +1,6 @@
 {
-  "name": "MERN Boilerplate",
+  "name": "react-redux-template",
+  "description": "An example app using the MERN stack, with the main branch using React and Redux.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
