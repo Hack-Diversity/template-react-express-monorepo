@@ -4,7 +4,7 @@ import api from '../api';
 import styled from 'styled-components';
 
 const Title = styled.h1.attrs({
-  className: 'h1',
+className: 'h1',
 })``;
 
 const Wrapper = styled.div.attrs({
@@ -24,6 +24,12 @@ const InputText = styled.input.attrs({
   margin: 5px auto;
   max-width: 30%;
   text-align: center;
+`;
+
+const SelectField = styled.select.attrs({
+  className: 'form-control',
+})`
+  /* TBD */
 `;
 
 const Button = styled.button.attrs({

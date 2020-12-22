@@ -13,6 +13,13 @@ const Wrapper = styled.div`
 
 class ItemsList extends Component {
   constructor(props) {
+    /**
+     * Currently deprecated and now known as the "legacy context":
+     * - https://reactjs.org/docs/legacy-context.html
+     *
+     * TODO: refactor to use new Context API:
+     * - https://reactjs.org/docs/context.html
+     */
     super(props);
     this.state = {
       items: [],
@@ -48,7 +55,7 @@ class ItemsList extends Component {
       {
         Header: 'Timeframe',
         accessor: 'timeframe',
-        Cell: props => <span>{props.value.join(' / ')}</span>,
+        Cell: props => <span>{props.value}</span>,
       },
       {
         Header: 'Priority',
@@ -79,14 +86,11 @@ class ItemsList extends Component {
       },
     ];
 
-    let showTable = true;
-    if (!items.length) {
-      showTable = false;
-    }
-
     return (
       <Wrapper>
-        {showTable ? (
+        {(
+          (items || []).length > 0
+        ) ? (
           <ReactTable
             data={items}
             columns={columns}
