@@ -11,21 +11,21 @@ const Delete = styled.div`
 
 class DeleteItem extends Component {
     confirmDeleteItem = event => {
-      event.preventDefault();
+        event.preventDefault();
 
-      if (
-        window.confirm(
-          `Do you want to permanently delete this item? ${this.props.id}`,
-        )
-      ) {
-        api.deleteItemById(this.props.id);
-        window.location.reload();
-      }
+        if (
+            window.confirm(
+                `Do you want to permanently delete this item? ${this.props.id}`,
+            )
+        ) {
+            api.deleteItemById(this.props.id);
+            window.location.reload();
+        }
 
     }
 
     render() {
-      return <Delete onClick={this.confirmDeleteItem}>Delete Item</Delete>;
+        return <Delete onClick={this.confirmDeleteItem}>Delete Item</Delete>;
     }
 }
 

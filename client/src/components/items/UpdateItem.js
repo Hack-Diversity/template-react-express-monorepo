@@ -11,20 +11,20 @@ const Update = styled.div`
 
 class UpdateItem extends Component {
     confirmUpdateItem = event => {
-      event.preventDefault();
+        event.preventDefault();
 
-      if (
-        window.confirm(
-          `Are you sure you want to update this item? ${this.props.id}`,
-        )
-      ) {
-        api.updateItemById()
-        window.location.href = `/items/update/${this.props.id}`;
-      }
+        if (
+            window.confirm(
+                `Are you sure you want to update this item? ${this.props.id}`,
+            )
+        ) {
+            api.updateItemById()
+            window.location.href = `/items/update/${this.props.id}`;
+        }
     }
 
     render() {
-      return <Update onClick={this.updateUser}>Update Item</Update>;
+        return <Update onClick={this.updateUser}>Update Item</Update>;
     }
 }
 
