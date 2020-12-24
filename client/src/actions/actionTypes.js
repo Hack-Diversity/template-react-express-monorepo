@@ -6,10 +6,10 @@ export const LOGOUT = "LOGOUT";
 
 
 // POSTS
-export const SET_ITEM = "SET_ITEM";
-export const SET_ITEMS = "SET_ITEMS";
-export const LOADING_ITEM = "LOADING_ITEM";
-export const LOADING_ITEMS = "LOADING_ITEMS";
+export const SET_SINGLE_ITEM = "SET_SINGLE_ITEM";
+export const SET_ALL_ITEMS = "SET_ALL_ITEMS";
+export const LOADING_SINGLE_ITEM = "LOADING_SINGLE_ITEM";
+export const LOADING_ALL_ITEMS = "LOADING_ALL_ITEMS";
 
 
 // USERS

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ReactTable from 'react-table-6';
+import * as actions from '../actions';
 import { DeleteItem, UpdateItem } from '../components/items';
-import api from '../api';
 
 import styled from 'styled-components';
 
@@ -12,35 +14,15 @@ const Wrapper = styled.div`
 `;
 
 class ItemsList extends Component {
-    constructor(props) {
-        /**
-         * Currently deprecated and now known as the "legacy context":
-         * - https://reactjs.org/docs/legacy-context.html
-         *
-         * TODO: refactor to use new Context API:
-         * - https://reactjs.org/docs/context.html
-         */
-        super(props);
-        this.state = {
-            items: [],
-            columns: [],
-            isLoading: false,
-        };
-    }
 
-    componentDidMount = async () => {
-        this.setState({ isLoading: true });
+    componentDidMount() {
+        if (((this.props.itemData || {}).items || []).length) return;
 
-        await api.getAllItems().then(items => {
-            this.setState({
-                items: items.data.data,
-                isLoading: false,
-            });
-        });
+        this.props.fetchAllItems()
     }
 
     render() {
-        const { items, isLoading } = this.state;
+        const { items, loaded, loading } = this.props.itemData || {};
         const columns = [
             {
                 Header: 'ID',
@@ -94,7 +76,7 @@ class ItemsList extends Component {
                         <ReactTable
                             data={items}
                             columns={columns}
-                            isLoading={isLoading}
+                            isLoading={(loaded && loading)}
                             defaultPageSize={10}
                             showPageSizeOptions={true}
                             minRows={10}
@@ -105,6 +87,15 @@ class ItemsList extends Component {
             </Wrapper>
         );
     }
+
 }
 
-export default ItemsList;
+const mapStateToProps = state => {
+    return {
+      ...state
+    }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
