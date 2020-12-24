@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactTable from 'react-table-6';
-import * as actions from '../actions';
+import { fetchAllItems } from '../actions';
 import { DeleteItem, UpdateItem } from '../components/items';
 
 import styled from 'styled-components';
@@ -96,6 +96,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchAllItems }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);

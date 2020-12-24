@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import api from '../api';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { insertSingleItem } from '../actions';
 
 import styled from 'styled-components';
 
@@ -26,12 +28,6 @@ const InputText = styled.input.attrs({
   text-align: center;
 `;
 
-const SelectField = styled.select.attrs({
-    className: 'form-control',
-})`
-  /* TBD */
-`;
-
 const Button = styled.button.attrs({
     className: 'btn btn-primary',
 })`
@@ -56,7 +52,7 @@ class ItemInsert extends Component {
         super(props);
         this.state = {
             name: '',
-            timeframe: '',
+            timeframeNote: '',
             priority: 0,
             content: '',
         };
@@ -68,8 +64,8 @@ class ItemInsert extends Component {
     }
 
     handleChangeInputTimeframe = async event => {
-        const timeframe = event.target.value;
-        this.setState({ timeframe });
+        const timeframeNote = event.target.value;
+        this.setState({ timeframeNote });
     }
 
     handleChangeInputPriority = async event => {
@@ -85,32 +81,46 @@ class ItemInsert extends Component {
         this.setState({ content });
     }
 
-    handleInsertItem = async () => {
-        const { name, timeframe, priority, content } = this.state;
-        // const arrayTime = timeframe.split('/');
-        // const payload = { name, priority, content, timeframe: arrayTime };
-        const payload = { name, timeframe, priority, content };
+    handleInsertItem = event => {
+        event.preventDefault();
 
-        await api.insertItem(payload)
-            .then(res => {
-                if (res) {
+        const {
+            name,
+            timeframeNote,
+            priority,
+            content
+        } = this.state;
+        const item = { name, timeframeNote, priority, content };
+
+        this.props.insertSingleItem(item)
+            .then(resp => {
+                if (resp) {
                     window.alert('Item inserted successfully');
                     this.setState({
                         name: '',
-                        timeframe: '',
+                        timeframeNote: '',
                         priority: 0,
                         content: '',
                     });
                 }
-            })
-            .catch(e => {
-                console.log(e);
-                return e;
             });
     }
 
     render() {
-        const { name, timeframe, priority, content } = this.state;
+        const {
+            name,
+            timeframeNote,
+            priority,
+            content
+        } = this.state;
+
+        const {
+            handleChangeInputName,
+            handleChangeInputTimeframe,
+            handleChangeInputPriority,
+            handleChangeInputContent,
+            handleInsertItem
+        } = this;
 
         return (
             <Wrapper>
@@ -120,14 +130,14 @@ class ItemInsert extends Component {
                 <InputText
                     type="text"
                     value={name}
-                    onChange={this.handleChangeInputName}
+                    onChange={handleChangeInputName}
                 />
 
-                <Label>Timeframe: </Label>
+                <Label>Timeframe Note: </Label>
                 <InputText
                     type="text"
-                    value={timeframe}
-                    onChange={this.handleChangeInputTimeframe}
+                    value={timeframeNote}
+                    onChange={handleChangeInputTimeframe}
                 />
 
                 <Label>Priority: </Label>
@@ -139,21 +149,23 @@ class ItemInsert extends Component {
                     max="1000"
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={priority}
-                    onChange={this.handleChangeInputPriority}
+                    onChange={handleChangeInputPriority}
                 />
 
                 <Label>Content: </Label>
                 <InputText
                     type="textarea"
                     value={content}
-                    onChange={this.handleChangeInputContent}
+                    onChange={handleChangeInputContent}
                 />
 
-                <Button onClick={this.handleInsertItem}>Add Item</Button>
+                <Button onClick={handleInsertItem}>Add Item</Button>
                 <CancelButton href={'/items/list'}>Cancel</CancelButton>
             </Wrapper>
         );
     }
 }
 
-export default ItemInsert;
+const mapDispatchToProps = dispatch => bindActionCreators({ insertSingleItem }, dispatch);
+
+export default connect(null, mapDispatchToProps)(ItemInsert);

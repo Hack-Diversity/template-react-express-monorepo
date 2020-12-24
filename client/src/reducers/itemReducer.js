@@ -28,6 +28,7 @@ const itemReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 loaded: true,
+                items: [ ...state.items, action.item ],
                 item: action.item
             }
         // TODO once component is created

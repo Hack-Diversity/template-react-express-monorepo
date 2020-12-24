@@ -23,6 +23,27 @@ export const fetchSingleItem = () => {
     }
 }
 
+export const insertSingleItem = item => {
+    return (dispatch) => {
+        dispatch({ type: types.LOADING_SINGLE_ITEM });
+
+        return api.insertItem(item)
+            .then(resp => {
+                if ((resp.data || {}).success) {
+                    const newItem = JSON.parse(resp.config.data);
+                    dispatch({
+                        type: types.SET_SINGLE_ITEM,
+                        item: {
+                            _id: resp.data.id,
+                            ...newItem
+                        }
+                    });
+                }
+                return resp;
+            });
+    }
+}
+
 // export const deleteSingleItem = () => {
 //     return (dispatch) => {
 //         dispatch({ type: types.LOADING_ITEM });
