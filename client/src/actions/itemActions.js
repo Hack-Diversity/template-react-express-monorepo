@@ -10,7 +10,6 @@ export const fetchAllItems = () => {
                 const items = resp.data.data;
                 dispatch({
                     type: types.SET_ALL_ITEMS,
-                    isLoading: false,
                     items,
                 })
             });
