@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Constants/Styles
 import * as actions from './actions';
-import * as routes from './constants';
+import { routes } from './constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
