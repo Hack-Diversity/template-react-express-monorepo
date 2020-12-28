@@ -8,6 +8,8 @@ export const fetchAllItems = () => {
         return api.getAllItems()
             .then(resp => {
                 const items = resp.data.data;
+                console.log("getAllItems: resp");
+                console.log(items);
                 dispatch({
                     type: types.SET_ALL_ITEMS,
                     items,
@@ -28,6 +30,8 @@ export const insertSingleItem = item => {
 
         return api.insertItem(item)
             .then(resp => {
+                console.log("insertItem: resp");
+                console.log(resp);
                 if ((resp.data || {}).success) {
                     const newItem = JSON.parse(resp.config.data);
                     dispatch({
@@ -43,8 +47,18 @@ export const insertSingleItem = item => {
     }
 }
 
-// export const deleteSingleItem = () => {
-//     return (dispatch) => {
-//         dispatch({ type: types.LOADING_ITEM });
-//     }
-// }
+export const deleteSingleItem = itemId => {
+    return (dispatch) => {
+        dispatch({ type: types.LOADING_SINGLE_ITEM });
+
+        return api.deleteItemById(itemId)
+            .then(resp => {
+                console.log("deleteItemById: resp");
+                console.log(resp);
+                dispatch({
+                    type: types.RELOAD_ITEMS
+                })
+                return resp;
+            })
+    }
+}

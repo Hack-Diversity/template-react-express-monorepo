@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import api from '../../api';
 
 import styled from 'styled-components';
 
@@ -18,8 +17,7 @@ class DeleteItem extends Component {
                 `Do you want to permanently delete this item? ${this.props.id}`,
             )
         ) {
-            api.deleteItemById(this.props.id);
-            window.location.reload();
+            this.props.onDelete(this.props.id);
         }
 
     }

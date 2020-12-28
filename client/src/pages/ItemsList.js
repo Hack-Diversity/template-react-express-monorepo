@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactTable from 'react-table-6';
-import { fetchAllItems } from '../actions';
+import * as actions from '../actions';
 import { DeleteItem, UpdateItem } from '../components/items';
 
 import styled from 'styled-components';
@@ -16,13 +16,31 @@ const Wrapper = styled.div`
 class ItemsList extends Component {
 
     componentDidMount() {
+        console.log("ItemsList: props");
+        console.log(this.props);
         if (((this.props.itemData || {}).items || []).length) return;
 
         this.props.fetchAllItems()
     }
 
+    handleRemoveItem = data => {
+        const itemId = data;
+
+        this.props.deleteSingleItem(itemId)
+            .then(resp => {
+                console.log("handleRemoveItem: resp");
+                console.log(resp);
+                this.props.fetchAllItems();
+            });
+    }
+
     render() {
-        const { items, loaded, loading } = this.props.itemData || {};
+        const {
+            items,
+            loaded,
+            loading
+        } = this.props.itemData || {};
+
         const columns = [
             {
                 Header: 'ID',
@@ -100,7 +118,9 @@ class ItemsList extends Component {
                 Cell: props => {
                     return (
                         <span data-update-id={props.original._id}>
-                            <UpdateItem id={props.original._id} />
+                            <UpdateItem
+                                id={props.original._id}
+                            />
                         </span>
                     );
                 },
@@ -111,7 +131,10 @@ class ItemsList extends Component {
                 Cell: props => {
                     return (
                         <span data-delete-id={props.original._id}>
-                            <DeleteItem id={props.original._id} />
+                            <DeleteItem
+                                id={props.original._id}
+                                onDelete={this.handleRemoveItem}
+                            />
                         </span>
                     );
                 },
@@ -146,7 +169,7 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchAllItems }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
 
