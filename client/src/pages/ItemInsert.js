@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { insertSingleItem } from '../actions';
+import { shared } from '../constants';
 
 import styled from 'styled-components';
 
@@ -12,20 +13,36 @@ const Title = styled.h1.attrs({
 const Wrapper = styled.div.attrs({
     className: 'form-group',
 })`
-  margin-top: 0 30px;
+    margin-top: 0 30px;
 `;
 
 const Label = styled.label`
-  margin: 5px;
-  max-width: 30%;
+    margin: 5px;
+    max-width: 30%;
 `;
 
 const InputText = styled.input.attrs({
     className: 'form-control',
 })`
-  margin: 5px auto;
-  max-width: 30%;
-  text-align: center;
+    margin: 5px auto;
+    max-width: 30%;
+    text-align: center;
+`;
+
+const Fieldset = styled.fieldset.attrs({
+    className: 'form-control',
+})`
+    border-color: transparent;
+    margin: 5px auto;
+    max-width: 30%;
+    min-height: 8em;
+`;
+
+const DayInput = styled.input.attrs({
+    className: '',
+})`
+    margin: 5px auto;
+    text-align: center;
 `;
 
 const Button = styled.button.attrs({
@@ -40,6 +57,8 @@ const CancelButton = styled.a.attrs({
   margin: 15px 15px 15px 5px;
 `;
 
+const { DaysOfTheWeek } = shared;
+
 class ItemInsert extends Component {
     constructor(props) {
         /**
@@ -52,6 +71,7 @@ class ItemInsert extends Component {
         super(props);
         this.state = {
             name: '',
+            daysOfWeek: {},
             timeframeNote: '',
             priority: 0,
             content: '',
@@ -61,6 +81,17 @@ class ItemInsert extends Component {
     handleChangeInputName = async event => {
         const name = event.target.value;
         this.setState({ name });
+    }
+
+    handleChangeDays = async event => {
+        const { checked, value } = event.target;
+        const { daysOfWeek } = this.state;
+        if (checked && !daysOfWeek[value]) {
+            daysOfWeek[value] = DaysOfTheWeek[value];
+        } else if (!checked && daysOfWeek[value]) {
+            delete daysOfWeek[value];
+        }
+        this.setState({ daysOfWeek });
     }
 
     handleChangeInputTimeframe = async event => {
@@ -86,24 +117,32 @@ class ItemInsert extends Component {
 
         const {
             name,
+            daysOfWeek,
             timeframeNote,
             priority,
             content
         } = this.state;
-        const item = { name, timeframeNote, priority, content };
+        const item = { name, daysOfWeek, timeframeNote, priority, content };
 
         this.props.insertSingleItem(item)
             .then(resp => {
+                console.log("handleInsertItem: resp");
+                console.log(resp);
                 if (resp) {
                     window.alert('Item inserted successfully');
                     this.setState({
                         name: '',
+                        daysOfWeek: {},
                         timeframeNote: '',
                         priority: 0,
                         content: '',
                     });
                 }
-            });
+            })
+            .catch(err => {
+                console.log("handleInsertItem: err");
+                console.log(err);
+            })
     }
 
     render() {
@@ -115,12 +154,15 @@ class ItemInsert extends Component {
         } = this.state;
 
         const {
+            handleChangeDays,
             handleChangeInputName,
             handleChangeInputTimeframe,
             handleChangeInputPriority,
             handleChangeInputContent,
             handleInsertItem
         } = this;
+
+        const days = shared.DaysOfTheWeek;
 
         return (
             <Wrapper>
@@ -132,6 +174,27 @@ class ItemInsert extends Component {
                     value={name}
                     onChange={handleChangeInputName}
                 />
+
+                <Fieldset>
+                    <legend>Day(s) of the Week: </legend>
+                    {Object.keys(days).map((day, i) => (
+                        <React.Fragment
+                            key={day}
+                        >
+                            <DayInput
+                                type="checkbox"
+                                id={day}
+                                value={day}
+                                onChange={handleChangeDays}
+                            />
+                            <Label
+                                htmlFor={day}
+                            >
+                                { days[day] }
+                            </Label>
+                        </React.Fragment>
+                    ))}
+                </Fieldset>
 
                 <Label>Timeframe Note: </Label>
                 <InputText

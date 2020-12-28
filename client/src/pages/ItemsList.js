@@ -28,28 +28,78 @@ class ItemsList extends Component {
                 Header: 'ID',
                 accessor: '_id',
                 filterable: true,
+                Cell: props => {
+                    return (
+                        <span data-item-id={props.original._id}>
+                            {props.original._id}
+                        </span>
+                    )
+                }
             },
             {
                 Header: 'Name',
                 accessor: 'name',
                 filterable: true,
+                Cell: props => {
+                    return (
+                        <span data-name={props.original.name}>
+                            {props.value}
+                        </span>
+                    );
+                }
+            },
+            {
+                Header: 'Day(s)',
+                accessor: 'daysOfWeek',
+                filterable: true,
+                Cell: props => {
+                    const { daysOfWeek } = props.original;
+                    let daysToDisplay = "";
+                    if (daysOfWeek && typeof daysOfWeek === "object") {
+                        for (const day in daysOfWeek) {
+                            daysToDisplay = daysToDisplay === "" ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
+                        }
+
+                    }
+                    return (
+                        <span
+                            data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
+                            data-daysofweek-by-id={props.original._id}
+                        >
+                            {daysToDisplay}
+                        </span>
+                    );
+                }
             },
             {
                 Header: 'Timeframe',
                 accessor: 'timeframe',
-                Cell: props => <span>{props.value}</span>,
+                Cell: props => {
+                    return (
+                        <span data-timeframe={props.original.timeframe}>
+                            {props.value}
+                        </span>
+                    );
+                },
             },
             {
                 Header: 'Priority',
                 accessor: 'priority',
                 filterable: true,
+                Cell: props => {
+                    return (
+                        <span data-priority={props.original.priority}>
+                            {props.value}
+                        </span>
+                    );
+                },
             },
             {
                 Header: '',
                 accessor: '',
-                Cell: function (props) {
+                Cell: props => {
                     return (
-                        <span>
+                        <span data-update-id={props.original._id}>
                             <UpdateItem id={props.original._id} />
                         </span>
                     );
@@ -58,9 +108,9 @@ class ItemsList extends Component {
             {
                 Header: '',
                 accessor: '',
-                Cell: function (props) {
+                Cell: props => {
                     return (
-                        <span>
+                        <span data-delete-id={props.original._id}>
                             <DeleteItem id={props.original._id} />
                         </span>
                     );
@@ -71,7 +121,7 @@ class ItemsList extends Component {
         return (
             <Wrapper>
                 {(
-                    (items || []).length > 0
+                    (items || []).length > 0 // defeats the purpose of using `isLoading` prop?
                 ) ? (
                         <ReactTable
                             data={items}
@@ -99,3 +149,5 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchAllItems }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
+
+
