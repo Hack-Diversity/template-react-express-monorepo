@@ -57,8 +57,6 @@ const CancelButton = styled.a.attrs({
   margin: 15px 15px 15px 5px;
 `;
 
-const { DaysOfTheWeek } = shared;
-
 class ItemInsert extends Component {
     constructor(props) {
         /**
@@ -86,6 +84,8 @@ class ItemInsert extends Component {
     handleChangeDays = async event => {
         const { checked, value } = event.target;
         const { daysOfWeek } = this.state;
+        const { DaysOfTheWeek } = shared;
+
         if (checked && !daysOfWeek[value]) {
             daysOfWeek[value] = DaysOfTheWeek[value];
         } else if (!checked && daysOfWeek[value]) {

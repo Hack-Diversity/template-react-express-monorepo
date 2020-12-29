@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-const Delete = styled.div`
+const Delete = styled.div.attrs({
+    className: "delete-item-btn"
+})`
   color: #ff0000;
   cursor: pointer;
 `;
 
-class DeleteItem extends Component {
+class DeleteButton extends Component {
     confirmDeleteItem = event => {
         event.preventDefault();
 
@@ -27,8 +29,8 @@ class DeleteItem extends Component {
     }
 }
 
-DeleteItem.propTypes = {
+DeleteButton.propTypes = {
     id: PropTypes.string,
 };
 
-export default DeleteItem;
+export default DeleteButton;

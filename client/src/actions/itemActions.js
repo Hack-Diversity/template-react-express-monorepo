@@ -13,14 +13,32 @@ export const fetchAllItems = () => {
                 dispatch({
                     type: types.SET_ALL_ITEMS,
                     items,
-                })
+                });
             });
-    }
-}
+    };
+};
 
-export const fetchSingleItem = () => {
+export const fetchSingleItem = (itemId) => {
+    console.log(itemId);
     return (dispatch) => {
         dispatch({ type: types.LOADING_SINGLE_ITEM });
+
+        return api.getItemById(itemId)
+            .then(resp => {
+                console.log("getItemById: resp");
+                console.log(resp);
+                if (resp.data.success) {
+                    const { item } = resp.data;
+                    dispatch({
+                        type: types.SET_SINGLE_ITEM,
+                        item,
+                    });
+                }
+                return resp;
+            })
+            .catch(err => {
+                console.error(`ERROR in 'fetchSingleItem': ${err}`);
+            })
     }
 }
 
@@ -43,9 +61,24 @@ export const insertSingleItem = item => {
                     });
                 }
                 return resp;
+            })
+            .catch(err => {
+                console.error(`error in call to 'insertSingleItem': ${err}`)
             });
+    };
+};
+
+export const updateSingleItem = item => {
+    return (dispatch) => {
+        dispatch({ type: types.LOADING_SINGLE_ITEM });
+
+
+        // return api.updateItem(itemId, item)
+        //     .then(resp => {
+
+        //     })
     }
-}
+};
 
 export const deleteSingleItem = itemId => {
     return (dispatch) => {
@@ -57,8 +90,8 @@ export const deleteSingleItem = itemId => {
                 console.log(resp);
                 dispatch({
                     type: types.RELOAD_ITEMS
-                })
+                });
                 return resp;
-            })
-    }
-}
+            });
+    };
+};

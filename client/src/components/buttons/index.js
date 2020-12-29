@@ -1,7 +1,5 @@
-import DeleteItem from './DeleteItem';
-import UpdateItem from './UpdateItem';
+import DeleteButton from './DeleteButton';
 
 export {
-    DeleteItem,
-    UpdateItem
+    DeleteButton,
 };

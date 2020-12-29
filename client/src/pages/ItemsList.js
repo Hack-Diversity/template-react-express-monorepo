@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReactTable from 'react-table-6';
 import * as actions from '../actions';
-import { DeleteItem, UpdateItem } from '../components/items';
+import { DeleteButton } from '../components/buttons';
 
 import styled from 'styled-components';
 
@@ -84,7 +85,7 @@ class ItemsList extends Component {
                             data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
                             data-daysofweek-by-id={props.original._id}
                         >
-                            {daysToDisplay}
+                            {daysToDisplay || "-"}
                         </span>
                     );
                 }
@@ -95,7 +96,7 @@ class ItemsList extends Component {
                 Cell: props => {
                     return (
                         <span data-timeframe={props.original.timeframe}>
-                            {props.value}
+                            {props.value || "-"}
                         </span>
                     );
                 },
@@ -117,11 +118,12 @@ class ItemsList extends Component {
                 accessor: '',
                 Cell: props => {
                     return (
-                        <span data-update-id={props.original._id}>
-                            <UpdateItem
-                                id={props.original._id}
-                            />
-                        </span>
+                        <Link
+                            data-update-id={props.original._id}
+                            to={`/item/update/${props.original._id}`}
+                        >
+                            Update Item
+                        </Link>
                     );
                 },
             },
@@ -131,7 +133,7 @@ class ItemsList extends Component {
                 Cell: props => {
                     return (
                         <span data-delete-id={props.original._id}>
-                            <DeleteItem
+                            <DeleteButton
                                 id={props.original._id}
                                 onDelete={this.handleRemoveItem}
                             />
