@@ -6,10 +6,9 @@ const LOG_IN = '/login';
 
 // Post routes
 const ITEMS = '/items';
-const ITEM = '/items/:id';
+const ITEM = '/item/:id';
 const ITEM_INSERT = '/item/create';
-const ITEM_UPDATE = '/item/update';
-// const ITEM_DELETE = '/item/delete';
+const ITEM_UPDATE = '/item/update/:id';
 
 // User routes
 // const ACCOUNT = '/account';
@@ -27,7 +26,6 @@ export const routes = {
     ITEM,
     ITEM_INSERT,
     ITEM_UPDATE,
-    // ITEM_DELETE,
     // ACCOUNT,
     // USERS,
     // USER,
