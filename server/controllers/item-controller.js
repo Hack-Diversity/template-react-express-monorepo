@@ -23,13 +23,13 @@ getItems = async (req, res) => {
             .status(200)
             .json({
                 success: true,
-                data: items,
+                items: items,
             });
     }).catch(err => console.error(err));
 };
 
 getItemById = async (req, res) => {
-    await Item.find({ _id: req.params.id }, (err, item) => {
+    await Item.find({ _id: req.params.id }, (err, items) => {
         if (err) {
             return res
                 .status(400)
@@ -50,7 +50,7 @@ getItemById = async (req, res) => {
             .status(200)
             .json({
                 success: true,
-                data: item,
+                item: items[0],
             });
     }).catch(err => console.error(err));
 };
@@ -108,7 +108,9 @@ updateItem = async (req, res) => {
                 message: 'Item not found!',
             });
         }
+        // TODO: make this neater
         item.name = body.name;
+        item.daysOfWeek = body.daysOfWeek;
         item.timeFrame = body.timeFrame;
         item.priority = body.priority;
         item.content = body.content;
