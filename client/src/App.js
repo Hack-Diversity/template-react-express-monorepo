@@ -26,11 +26,9 @@ class App extends Component {
                 {/* <React.Fragment> */}
                 <Route exact path={routes.HOME} component={Welcome} />
                 <Route exact path={routes.ITEMS} component={ItemsList} />
+                {/* <Route exact path={routes.ITEM} component={ItemPage} /> */}
                 <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
                 <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
-                {/* <Route exact path={routes.ITEM_DELETE} component={ItemDelete} /> */}
-                {/* <Route exact path={routes.ITEMS} component={ItemsPage} />
-        <Route exact path={routes.ITEM} component={ItemPage} /> */}
                 {/* </React.Fragment> */}
             </Switch>
         );
