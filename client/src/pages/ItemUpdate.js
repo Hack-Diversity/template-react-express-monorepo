@@ -180,6 +180,7 @@ class ItemUpdate extends Component {
     render() {
         const {
             name,
+            daysOfWeek,
             timeframeNote,
             priority,
             content
@@ -219,7 +220,7 @@ class ItemUpdate extends Component {
                                 className="day-checkbox-input"
                                 value={day}
                                 onChange={handleChangeDays}
-                                // checked={}
+                                checked={typeof daysOfWeek[day] === "string"}
                             />
                             <Label
                                 htmlFor={day}

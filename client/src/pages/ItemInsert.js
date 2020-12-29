@@ -148,6 +148,7 @@ class ItemInsert extends Component {
     render() {
         const {
             name,
+            daysOfWeek,
             timeframeNote,
             priority,
             content
@@ -186,6 +187,7 @@ class ItemInsert extends Component {
                                 id={day}
                                 value={day}
                                 onChange={handleChangeDays}
+                                checked={typeof daysOfWeek[day] === "string"}
                             />
                             <Label
                                 htmlFor={day}
