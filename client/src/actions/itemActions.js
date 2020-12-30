@@ -7,7 +7,7 @@ export const fetchAllItems = () => {
 
         return api.getAllItems()
             .then(resp => {
-                const items = resp.data.data;
+                const { items } = resp.data;
                 console.log("getAllItems: resp");
                 console.log(items);
                 dispatch({
