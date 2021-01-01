@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleItem, updateSingleItem } from '../actions';
-<<<<<<< Updated upstream
 import { routes, shared } from '../constants';
-=======
-import { shared } from '../constants';
->>>>>>> Stashed changes
 
 import styled from 'styled-components';
 
@@ -83,8 +79,8 @@ class ItemUpdate extends Component {
         };
     }
 
-    componentDidMount() {
-        this.props.fetchSingleItem(this.props.itemId)
+    componentDidMount = async () => {
+        await this.props.fetchSingleItem(this.props.itemId)
             .then(resp => {
                 const { item } = resp.data;
                 this.setState({ ...item });
@@ -160,8 +156,7 @@ class ItemUpdate extends Component {
         if (window.confirm(`Are you sure you want to update this item? ${this.state._id}`)) {
             return this.handleUpdateItem(event);
         } else {
-            window.alert('There was an issue updating this item :(');
-            return false;
+            event.preventDefault();
         }
     }
 
@@ -198,10 +193,10 @@ class ItemUpdate extends Component {
                                 type="checkbox"
                                 id={DAYS_OF_WEEK[dayInt]}
                                 className="day-checkbox-input"
-                                value={this.state.daysOfWeek[dayInt] || DAYS_OF_WEEK[dayInt]}
+                                defaultValue={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
                                 data-day-index={dayInt}
                                 onChange={this.handleChangeDays}
-                                checked={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
+                                defaultChecked={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
                             />
                             <Label
                                 htmlFor={DAYS_OF_WEEK[dayInt]}
