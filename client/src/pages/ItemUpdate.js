@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleItem, updateSingleItem } from '../actions';
-import api from '../api';
 import { shared } from '../constants';
 
 import styled from 'styled-components';
@@ -53,11 +52,6 @@ const Button = styled.button.attrs({
   margin: 15px 15px 15px 5px;
 `;
 
-const Update = styled.div`
-  color: #ef9b0f;
-  cursor: pointer;
-`;
-
 const CancelButton = styled.a.attrs({
     className: 'btn btn-danger',
 })`
@@ -74,8 +68,8 @@ class ItemUpdate extends Component {
          * - https://reactjs.org/docs/context.html
          */
         super(props);
-        // console.log(props);
         this.state = {
+            _id: '',
             name: '',
             daysOfWeek: {},
             timeframeNote: '',
@@ -88,7 +82,6 @@ class ItemUpdate extends Component {
         this.props.fetchSingleItem(this.props.itemId)
             .then(resp => {
                 const { item } = resp.data;
-                console.log(item);
                 this.setState({ ...item });
             });
     }
@@ -99,16 +92,17 @@ class ItemUpdate extends Component {
     }
 
     handleChangeDays = async event => {
-        const { checked, value } = event.target;
+        const { checked } = event.target;
+        const { dayIndex } = event.target.dataset;
         const { daysOfWeek } = this.state;
-        const { DaysOfTheWeek } = shared;
+        const { DAYS_OF_WEEK } = shared;
 
-        if (checked && !daysOfWeek[value]) {
-            daysOfWeek[value] = DaysOfTheWeek[value];
-        } else if (!checked && daysOfWeek[value]) {
-            delete daysOfWeek[value];
+        if (checked && !daysOfWeek[dayIndex]) {
+            daysOfWeek[dayIndex] = DAYS_OF_WEEK[dayIndex];
+        } else if (!checked && daysOfWeek[dayIndex]) {
+            delete daysOfWeek[dayIndex];
         }
-        this.setState({ daysOfWeek });
+        this.setState({ daysOfWeek: daysOfWeek });
     }
 
     handleChangeInputTimeframe = async event => {
@@ -129,56 +123,44 @@ class ItemUpdate extends Component {
         this.setState({ content });
     }
 
-    confirmUpdateItem = event => {
-        event.preventDefault();
-
-        if (
-            window.confirm(
-                `Are you sure you want to update this item? ${this.props.id}`,
-            )
-        ) {
-            api.updateItemById()
-            window.location.href = `/items/update/${this.props.id}`;
-        }
-    }
-
-    handleInsertItem = event => {
-        event.preventDefault();
-
+    handleUpdateItem = event => {
         const {
+            _id,
             name,
             daysOfWeek,
             timeframeNote,
             priority,
             content
         } = this.state;
-        const item = { name, daysOfWeek, timeframeNote, priority, content };
+        const item = { _id, name, daysOfWeek, timeframeNote, priority, content };
 
-        this.props.insertSingleItem(item)
+        return this.props.updateSingleItem(item)
             .then(resp => {
-                console.log("handleInsertItem: resp");
+                console.log("handleUpdateItem: resp");
                 console.log(resp);
                 if (resp) {
-                    this.setState({
-                        name: '',
-                        daysOfWeek: {},
-                        timeframeNote: '',
-                        priority: 0,
-                        content: '',
-                    });
-                    const dayCheckboxes = document.querySelectorAll('input.day-checkbox-input[type="checkbox"]');
-                    console.log(dayCheckboxes);
-                    window.alert('Item inserted successfully');
+                    window.alert('Item updated successfully');
+                    return true;
+                } else {
+                    throw resp;
                 }
             })
             .catch(err => {
-                console.log("handleInsertItem: err");
-                console.log(err);
-            })
+                window.alert(`There was an error updating the item... :(`);
+                console.error("handleUpdateItem: err");
+                console.error(err);
+            });
+    }
+
+    confirmUpdateItem = event => {
+        if (window.confirm(`Are you sure you want to update this item? ${this.state._id}`)) {
+            return this.handleUpdateItem(event);
+        }
     }
 
     render() {
         const {
+            _id,
             name,
             daysOfWeek,
             timeframeNote,
@@ -186,18 +168,9 @@ class ItemUpdate extends Component {
             content
         } = this.state;
 
-        const {
-            handleChangeDays,
-            handleChangeInputName,
-            handleChangeInputTimeframe,
-            handleChangeInputPriority,
-            handleChangeInputContent,
-            handleInsertItem
-        } = this;
+        const { DAYS_OF_WEEK } = shared;
 
-        const days = shared.DaysOfTheWeek;
-
-        return (
+        return _id && (
             <Wrapper>
                 <Title>Create Item</Title>
 
@@ -205,27 +178,28 @@ class ItemUpdate extends Component {
                 <InputText
                     type="text"
                     value={name}
-                    onChange={handleChangeInputName}
+                    onChange={this.handleChangeInputName}
                 />
 
                 <Fieldset>
                     <legend>Day(s) of the Week: </legend>
-                    {Object.keys(days).map((day, i) => (
+                    {Object.keys(DAYS_OF_WEEK).map((dayInt, i) => (
                         <React.Fragment
-                            key={day}
+                            key={DAYS_OF_WEEK[dayInt]}
                         >
                             <DayInput
                                 type="checkbox"
-                                id={day}
+                                id={DAYS_OF_WEEK[dayInt]}
                                 className="day-checkbox-input"
-                                value={day}
-                                onChange={handleChangeDays}
-                                checked={typeof daysOfWeek[day] === "string"}
+                                defaultValue={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
+                                data-day-index={dayInt}
+                                onChange={this.handleChangeDays}
+                                defaultChecked={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
                             />
                             <Label
-                                htmlFor={day}
+                                htmlFor={DAYS_OF_WEEK[dayInt]}
                             >
-                                { days[day] }
+                                { DAYS_OF_WEEK[dayInt] }
                             </Label>
                         </React.Fragment>
                     ))}
@@ -235,7 +209,7 @@ class ItemUpdate extends Component {
                 <InputText
                     type="text"
                     value={timeframeNote}
-                    onChange={handleChangeInputTimeframe}
+                    onChange={this.handleChangeInputTimeframe}
                 />
 
                 <Label>Priority: </Label>
@@ -247,17 +221,17 @@ class ItemUpdate extends Component {
                     max="1000"
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={priority}
-                    onChange={handleChangeInputPriority}
+                    onChange={this.handleChangeInputPriority}
                 />
 
                 <Label>Content: </Label>
                 <InputText
                     type="textarea"
                     value={content}
-                    onChange={handleChangeInputContent}
+                    onChange={this.handleChangeInputContent}
                 />
 
-                <Button onClick={handleInsertItem}>Update Item</Button>
+                <Button onClick={this.confirmUpdateItem}>Update Item</Button>
                 <CancelButton href={'/items/list'}>Cancel</CancelButton>
             </Wrapper>
         );

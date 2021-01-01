@@ -1,13 +1,13 @@
-const DaysOfTheWeek = {
-    monday: "Monday",
-    tuesday: "Tuesday",
-    wednesday: "Wednesday",
-    thursday: "Thursday",
-    friday: "Friday",
-    saturday: "Saturday",
-    sunday: "Sunday",
+const DAYS_OF_WEEK = {
+    0: "Monday",
+    1: "Tuesday",
+    2: "Wednesday",
+    3: "Thursday",
+    4: "Friday",
+    5: "Saturday",
+    6: "Sunday",
 };
 
 export const shared = {
-    DaysOfTheWeek,
+    DAYS_OF_WEEK,
 };

@@ -84,10 +84,10 @@ class ItemInsert extends Component {
     handleChangeDays = async event => {
         const { checked, value } = event.target;
         const { daysOfWeek } = this.state;
-        const { DaysOfTheWeek } = shared;
+        const { DAYS_OF_WEEK } = shared;
 
         if (checked && !daysOfWeek[value]) {
-            daysOfWeek[value] = DaysOfTheWeek[value];
+            daysOfWeek[value] = DAYS_OF_WEEK[value];
         } else if (!checked && daysOfWeek[value]) {
             delete daysOfWeek[value];
         }
@@ -154,16 +154,7 @@ class ItemInsert extends Component {
             content
         } = this.state;
 
-        const {
-            handleChangeDays,
-            handleChangeInputName,
-            handleChangeInputTimeframe,
-            handleChangeInputPriority,
-            handleChangeInputContent,
-            handleInsertItem
-        } = this;
-
-        const days = shared.DaysOfTheWeek;
+        const { DAYS_OF_WEEK } = shared;
 
         return (
             <Wrapper>
@@ -173,12 +164,12 @@ class ItemInsert extends Component {
                 <InputText
                     type="text"
                     value={name}
-                    onChange={handleChangeInputName}
+                    onChange={this.handleChangeInputName}
                 />
 
                 <Fieldset>
                     <legend>Day(s) of the Week: </legend>
-                    {Object.keys(days).map((day, i) => (
+                    {Object.keys(DAYS_OF_WEEK).map((day, i) => (
                         <React.Fragment
                             key={day}
                         >
@@ -186,13 +177,13 @@ class ItemInsert extends Component {
                                 type="checkbox"
                                 id={day}
                                 value={day}
-                                onChange={handleChangeDays}
+                                onChange={this.handleChangeDays}
                                 checked={typeof daysOfWeek[day] === "string"}
                             />
                             <Label
                                 htmlFor={day}
                             >
-                                { days[day] }
+                                { DAYS_OF_WEEK[day] }
                             </Label>
                         </React.Fragment>
                     ))}
@@ -202,7 +193,7 @@ class ItemInsert extends Component {
                 <InputText
                     type="text"
                     value={timeframeNote}
-                    onChange={handleChangeInputTimeframe}
+                    onChange={this.handleChangeInputTimeframe}
                 />
 
                 <Label>Priority: </Label>
@@ -214,17 +205,17 @@ class ItemInsert extends Component {
                     max="1000"
                     pattern="[0-9]+([,\.][0-9]+)?"
                     value={priority}
-                    onChange={handleChangeInputPriority}
+                    onChange={this.handleChangeInputPriority}
                 />
 
                 <Label>Content: </Label>
                 <InputText
                     type="textarea"
                     value={content}
-                    onChange={handleChangeInputContent}
+                    onChange={this.handleChangeInputContent}
                 />
 
-                <Button onClick={handleInsertItem}>Add Item</Button>
+                <Button onClick={this.handleInsertItem}>Add Item</Button>
                 <CancelButton href={'/items/list'}>Cancel</CancelButton>
             </Wrapper>
         );
