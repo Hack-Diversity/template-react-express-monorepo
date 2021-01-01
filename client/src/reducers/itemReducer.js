@@ -31,28 +31,31 @@ const itemReducer = (state = initialState, action) => {
                 item: action.item
             };
         case types.SET_SINGLE_ITEM:
-            for (const item of state.items) {
-                if (item._id === action.item._id) {
-                    item = action.item;
-                    break;
-                }
-            }
             return {
                 ...state,
                 loading: false,
                 loaded: true,
-                items: state.items,
                 item: action.item
             };
         case types.UPDATE_SINGLE_ITEM:
+            console.log('initial:')
+            console.log(state.items);
+            let newItems = state.items.map((item, i) => {
+                if (item._id === action.item._id) {
+                    item = action.item;
+                }
+                return item;
+            });
+            console.log('altered:')
+            console.log(newItems);
             return {
                 ...state,
                 loading: false,
                 loaded: true,
-                items: [ action.item, ...state.items ],
+                items: newItems,
                 item: action.item
             };
-        // TODO once component is created
+        // TODO: after users are created
         // case types.FETCH_USER_ITEM:
         //   return { ...state, item: action.item }
         default:

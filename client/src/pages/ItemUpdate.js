@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchSingleItem, updateSingleItem } from '../actions';
+<<<<<<< Updated upstream
 import { routes, shared } from '../constants';
+=======
+import { shared } from '../constants';
+>>>>>>> Stashed changes
 
 import styled from 'styled-components';
 
@@ -69,7 +73,6 @@ class ItemUpdate extends Component {
          * - https://reactjs.org/docs/context.html
          */
         super(props);
-        // console.log(props);
         this.state = {
             _id: '',
             name: '',
@@ -84,7 +87,6 @@ class ItemUpdate extends Component {
         this.props.fetchSingleItem(this.props.itemId)
             .then(resp => {
                 const { item } = resp.data;
-                console.log(item);
                 this.setState({ ...item });
             });
     }
@@ -95,16 +97,17 @@ class ItemUpdate extends Component {
     }
 
     handleChangeDays = async event => {
-        const { checked, value } = event.target;
+        const { checked } = event.target;
+        const { dayIndex } = event.target.dataset;
         const { daysOfWeek } = this.state;
         const { DAYS_OF_WEEK } = shared;
 
-        if (checked && !daysOfWeek[value]) {
-            daysOfWeek[value] = DAYS_OF_WEEK[value];
-        } else if (!checked && daysOfWeek[value]) {
-            delete daysOfWeek[value];
+        if (checked && !daysOfWeek[dayIndex]) {
+            daysOfWeek[dayIndex] = DAYS_OF_WEEK[dayIndex];
+        } else if (!checked && daysOfWeek[dayIndex]) {
+            delete daysOfWeek[dayIndex];
         }
-        this.setState({ daysOfWeek });
+        this.setState({ daysOfWeek: daysOfWeek });
     }
 
     handleChangeInputTimeframe = async event => {
@@ -142,6 +145,7 @@ class ItemUpdate extends Component {
                 console.log(resp);
                 if (resp) {
                     window.alert('Item updated successfully');
+                    return true;
                 } else {
                     throw resp;
                 }
@@ -152,12 +156,12 @@ class ItemUpdate extends Component {
             });
     }
 
-    confirmUpdateItem = async event => {
-        // event.preventDefault();
+    confirmUpdateItem = event => {
         if (window.confirm(`Are you sure you want to update this item? ${this.state._id}`)) {
-            await this.handleUpdateItem(event);
+            return this.handleUpdateItem(event);
         } else {
-            window.alert('There was an issue updating this item :(')
+            window.alert('There was an issue updating this item :(');
+            return false;
         }
     }
 
@@ -186,22 +190,23 @@ class ItemUpdate extends Component {
 
                 <Fieldset>
                     <legend>Day(s) of the Week: </legend>
-                    {Object.keys(DAYS_OF_WEEK).map((day, i) => (
+                    {Object.keys(DAYS_OF_WEEK).map((dayInt, i) => (
                         <React.Fragment
-                            key={day}
+                            key={DAYS_OF_WEEK[dayInt]}
                         >
                             <DayInput
                                 type="checkbox"
-                                id={day}
+                                id={DAYS_OF_WEEK[dayInt]}
                                 className="day-checkbox-input"
-                                value={day}
+                                value={this.state.daysOfWeek[dayInt] || DAYS_OF_WEEK[dayInt]}
+                                data-day-index={dayInt}
                                 onChange={this.handleChangeDays}
-                                checked={typeof daysOfWeek[day] === "string"}
+                                checked={daysOfWeek[dayInt] && daysOfWeek[dayInt] !== ""}
                             />
                             <Label
-                                htmlFor={day}
+                                htmlFor={DAYS_OF_WEEK[dayInt]}
                             >
-                                { DAYS_OF_WEEK[day] }
+                                { DAYS_OF_WEEK[dayInt] }
                             </Label>
                         </React.Fragment>
                     ))}
