@@ -19,7 +19,7 @@ class ItemsList extends Component {
     componentDidMount() {
         console.log("ItemsList: props");
         console.log(this.props);
-        if (((this.props.itemData || {}).items || []).length) return;
+        // if (((this.props.itemData || {}).items || []).length) return;
 
         this.props.fetchAllItems()
     }
@@ -41,6 +41,7 @@ class ItemsList extends Component {
             loaded,
             loading
         } = this.props.itemData || {};
+        console.log(items);
 
         const columns = [
             {
@@ -92,10 +93,10 @@ class ItemsList extends Component {
             },
             {
                 Header: 'Timeframe',
-                accessor: 'timeframe',
+                accessor: 'timeframeNote',
                 Cell: props => {
                     return (
-                        <span data-timeframe={props.original.timeframe}>
+                        <span data-timeframe={props.original.timeframeNote}>
                             {props.value || "-"}
                         </span>
                     );

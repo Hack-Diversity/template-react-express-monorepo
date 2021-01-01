@@ -4,8 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "server": "npx nodemon index.js"
+        "debugServer": "npx nodemon inspect index.js",
+        "server": "npx nodemon index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
     "author": "",

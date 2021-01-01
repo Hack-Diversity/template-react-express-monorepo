@@ -14,6 +14,9 @@ export const fetchAllItems = () => {
                     type: types.SET_ALL_ITEMS,
                     items,
                 });
+            })
+            .catch(err => {
+                console.error(`ERROR in 'getAllItems': ${err}`);
             });
     };
 };
@@ -30,7 +33,7 @@ export const fetchSingleItem = (itemId) => {
                 if (resp.data.success) {
                     const { item } = resp.data;
                     dispatch({
-                        type: types.SET_SINGLE_ITEM,
+                        type: types.GET_SINGLE_ITEM,
                         item,
                     });
                 }
@@ -38,9 +41,9 @@ export const fetchSingleItem = (itemId) => {
             })
             .catch(err => {
                 console.error(`ERROR in 'fetchSingleItem': ${err}`);
-            })
-    }
-}
+            });
+    };
+};
 
 export const insertSingleItem = item => {
     return (dispatch) => {
@@ -63,7 +66,7 @@ export const insertSingleItem = item => {
                 return resp;
             })
             .catch(err => {
-                console.error(`error in call to 'insertSingleItem': ${err}`)
+                console.error(`ERROR in 'insertSingleItem': ${err}`);
             });
     };
 };
@@ -72,12 +75,26 @@ export const updateSingleItem = item => {
     return (dispatch) => {
         dispatch({ type: types.LOADING_SINGLE_ITEM });
 
-
-        // return api.updateItem(itemId, item)
-        //     .then(resp => {
-
-        //     })
-    }
+        return api.updateItemById(item._id, item)
+            .then(resp => {
+                console.log("updateItem: resp");
+                console.log(resp);
+                if ((resp.data || {}).success) {
+                    const newItem = JSON.parse(resp.config.data);
+                    dispatch({
+                        type: types.UPDATE_SINGLE_ITEM,
+                        item: {
+                            _id: resp.data.id,
+                            ...newItem
+                        }
+                    });
+                }
+                return resp;
+            })
+            .catch(err => {
+                console.error(`ERROR in 'updateSingleItem': ${err}`);
+            });
+    };
 };
 
 export const deleteSingleItem = itemId => {
@@ -92,6 +109,9 @@ export const deleteSingleItem = itemId => {
                     type: types.RELOAD_ITEMS
                 });
                 return resp;
+            })
+            .catch(err => {
+                console.error(`ERROR in 'deleteSingleItem': ${err}`);
             });
     };
 };

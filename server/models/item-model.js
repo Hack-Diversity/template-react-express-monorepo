@@ -12,7 +12,7 @@ const Item = new Schema(
             of: String,
             required: false
         },
-        timeframe: {
+        timeframeNote: {
             type: String,
             required: false
         },
