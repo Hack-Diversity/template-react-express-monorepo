@@ -34,9 +34,9 @@ const Fieldset = styled.fieldset.attrs({
     className: 'form-control',
 })`
     border-color: transparent;
-    margin: 5px auto;
-    max-width: 30%;
-    min-height: 8em;
+    margin: 1em auto 0.5em;
+    max-width: 50%;
+    min-height: 6em;
 `;
 
 const DayInput = styled.input.attrs({
@@ -138,7 +138,7 @@ class ItemUpdate extends Component {
             .then(resp => {
                 console.log("handleUpdateItem: resp");
                 console.log(resp);
-                if (resp) {
+                if (typeof resp === "object" && (resp.status < 300 && resp.status >= 200)) {
                     window.alert('Item updated successfully');
                     return true;
                 } else {

@@ -1,6 +1,8 @@
 import * as types from './actionTypes';
 import api from '../api';
 
+// TODO - make a utility for logging?
+
 export const fetchAllItems = () => {
     return (dispatch) => {
         dispatch({ type: types.LOADING_ALL_ITEMS });
@@ -17,12 +19,13 @@ export const fetchAllItems = () => {
             })
             .catch(err => {
                 console.error(`ERROR in 'getAllItems': ${err}`);
+                console.error(err);
+                return err;
             });
     };
 };
 
 export const fetchSingleItem = (itemId) => {
-    console.log(itemId);
     return (dispatch) => {
         dispatch({ type: types.LOADING_SINGLE_ITEM });
 
@@ -41,6 +44,8 @@ export const fetchSingleItem = (itemId) => {
             })
             .catch(err => {
                 console.error(`ERROR in 'fetchSingleItem': ${err}`);
+                console.error(err);
+                return err;
             });
     };
 };
@@ -67,6 +72,8 @@ export const insertSingleItem = item => {
             })
             .catch(err => {
                 console.error(`ERROR in 'insertSingleItem': ${err}`);
+                console.error(err);
+                return err;
             });
     };
 };
@@ -93,6 +100,8 @@ export const updateSingleItem = item => {
             })
             .catch(err => {
                 console.error(`ERROR in 'updateSingleItem': ${err}`);
+                console.error(err);
+                return err;
             });
     };
 };
@@ -112,6 +121,8 @@ export const deleteSingleItem = itemId => {
             })
             .catch(err => {
                 console.error(`ERROR in 'deleteSingleItem': ${err}`);
+                console.error(err);
+                return err;
             });
     };
 };

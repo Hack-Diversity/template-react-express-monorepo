@@ -8,9 +8,29 @@ _TBD:_
 
 Required Versions:
 - Node.js: v10.14.2
-- Eiither
+- Either
 --- npm: v6.4.1
 --- yarn: v1.22.5
+
+Upgrading versions:
+- Node.js
+```
+TODO
+```
+
+- npm
+```
+TODO
+```
+
+- yarn
+```
+brew upgrade yarn
+```
+or
+```
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+```
 
 ## Setting up MongoDB
 
