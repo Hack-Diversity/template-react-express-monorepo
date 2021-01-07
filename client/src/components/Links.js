@@ -34,8 +34,8 @@ class Links extends Component {
                             </Link>
                         </Item>
                         <Item>
-                            <Link to="/items/table-test" className="nav-link">
-                                ReactTable Test
+                            <Link to="/items/react-table-v6" className="nav-link">
+                                Items (react-table-v6)
                             </Link>
                         </Item>
                     </List>

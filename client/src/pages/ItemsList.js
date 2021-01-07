@@ -2,19 +2,73 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ReactTable from 'react-table-6';
+import { useTable } from 'react-table';
 import * as actions from '../actions';
 import { DeleteButton } from '../components/buttons';
 
-import styled from 'styled-components';
+import MaUTable from '@material-ui/core/Table'
+import {
+    CssBaseline,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+} from '@material-ui/core';
 
-import 'react-table-6/react-table.css';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
 `;
 
-class ItemsList extends Component {
+const Table = ({ columns, data }) => {
+    const {
+        getTableProps,
+        headerGroups,
+        rows,
+        prepareRow
+    } = useTable({
+      columns,
+      data
+    });
+
+    return (
+        <MaUTable {...getTableProps()}>
+            <TableHead>
+                {headerGroups.map(headerGroup => (
+                    <TableRow {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            <TableCell {...column.getHeaderProps()}>
+                                {column.render('Header')}
+                            </TableCell>
+                        ))}
+                    </TableRow>
+                ))}
+            </TableHead>
+            <TableBody>
+                {rows.map((row, i) => {
+                    prepareRow(row)
+                    return (
+                        <TableRow
+                            data-row-item-id={row.values._id}
+                            {...row.getRowProps()}
+                        >
+                            {row.cells.map(cell => {
+                                return (
+                                    <TableCell {...cell.getCellProps()}>
+                                        {cell.render('Cell')}
+                                    </TableCell>
+                                )
+                            })}
+                        </TableRow>
+                    )
+                })}
+            </TableBody>
+        </MaUTable>
+    )
+};
+
+class ItemsTable extends Component {
 
     componentDidMount() {
         console.log("ItemsList: props");
@@ -47,11 +101,13 @@ class ItemsList extends Component {
             {
                 Header: 'ID',
                 accessor: '_id',
-                filterable: true,
+                // filterable: true,
                 Cell: props => {
+                    console.log(props);
+                    const { original } = props.cell.row;
                     return (
-                        <span data-item-id={props.original._id}>
-                            {props.original._id}
+                        <span data-item-id={original._id}>
+                            {props.value}
                         </span>
                     )
                 }
@@ -59,10 +115,11 @@ class ItemsList extends Component {
             {
                 Header: 'Name',
                 accessor: 'name',
-                filterable: true,
+                // filterable: true,
                 Cell: props => {
+                    const { original } = props.cell.row;
                     return (
-                        <span data-name={props.original.name}>
+                        <span data-name={original.name}>
                             {props.value}
                         </span>
                     );
@@ -71,9 +128,9 @@ class ItemsList extends Component {
             {
                 Header: 'Day(s)',
                 accessor: 'daysOfWeek',
-                filterable: true,
+                // filterable: true,
                 Cell: props => {
-                    const { daysOfWeek } = props.original;
+                    const { daysOfWeek } = props.cell.row.original;
                     let daysToDisplay = "";
                     if (daysOfWeek && typeof daysOfWeek === "object") {
                         for (const day in daysOfWeek) {
@@ -84,7 +141,7 @@ class ItemsList extends Component {
                     return (
                         <span
                             data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-                            data-daysofweek-by-id={props.original._id}
+                            data-daysofweek-by-id={props.value}
                         >
                             {daysToDisplay || "-"}
                         </span>
@@ -95,8 +152,9 @@ class ItemsList extends Component {
                 Header: 'Timeframe',
                 accessor: 'timeframeNote',
                 Cell: props => {
+                    const { original } = props.cell.row;
                     return (
-                        <span data-timeframe={props.original.timeframeNote}>
+                        <span data-timeframe={original.timeframeNote}>
                             {props.value || "-"}
                         </span>
                     );
@@ -105,23 +163,25 @@ class ItemsList extends Component {
             {
                 Header: 'Priority',
                 accessor: 'priority',
-                filterable: true,
+                // filterable: true,
                 Cell: props => {
+                    const { original } = props.cell.row;
                     return (
-                        <span data-priority={props.original.priority}>
+                        <span data-priority={original.priority}>
                             {props.value}
                         </span>
                     );
                 },
             },
             {
-                Header: '',
-                accessor: '',
+                Header: 'Update',
+                accessor: '_update',
                 Cell: props => {
+                    const { original } = props.cell.row;
                     return (
                         <Link
-                            data-update-id={props.original._id}
-                            to={`/item/update/${props.original._id}`}
+                            data-update-id={original._id}
+                            to={`/item/update/${props.value}`}
                         >
                             Update Item
                         </Link>
@@ -129,13 +189,14 @@ class ItemsList extends Component {
                 },
             },
             {
-                Header: '',
-                accessor: '',
+                Header: 'Delete',
+                accessor: '_delete',
                 Cell: props => {
+                    const { original } = props.cell.row;
                     return (
-                        <span data-delete-id={props.original._id}>
+                        <span data-delete-id={original._id}>
                             <DeleteButton
-                                id={props.original._id}
+                                id={original._id}
                                 onDelete={this.handleRemoveItem}
                             />
                         </span>
@@ -146,20 +207,17 @@ class ItemsList extends Component {
 
         return (
             <Wrapper>
+                <CssBaseline />
                 {(
-                    (items || []).length > 0 // defeats the purpose of using `isLoading` prop?
+                    (items || []).length > 0
                 ) ? (
-                        <ReactTable
-                            data={items}
-                            columns={columns}
-                            isLoading={(loaded && loading)}
-                            defaultPageSize={10}
-                            showPageSizeOptions={true}
-                            minRows={10}
-                        />
-                    ) : (
-                        `No items to render... :(`
-                    )}
+                    <Table
+                        data={items}
+                        columns={columns}
+                    />
+                ) : (
+                    `No items to render... :(`
+                )}
             </Wrapper>
         );
     }
@@ -174,6 +232,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsTable);
