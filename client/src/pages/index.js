@@ -1,9 +1,11 @@
-import ItemsList from './ItemsList';
 import ItemInsert from './ItemInsert';
+import ItemsList from './ItemsList';
+import ItemsTable from './ItemsTable';
 import ItemUpdate from './ItemUpdate';
 
 export {
-    ItemsList,
     ItemInsert,
+    ItemsList,
+    ItemsTable,
     ItemUpdate
 };

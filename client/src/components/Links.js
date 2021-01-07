@@ -33,6 +33,11 @@ class Links extends Component {
                                 Create Item
                             </Link>
                         </Item>
+                        <Item>
+                            <Link to="/items/table-test" className="nav-link">
+                                ReactTable Test
+                            </Link>
+                        </Item>
                     </List>
                 </Collapse>
             </React.Fragment>

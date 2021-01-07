@@ -12,7 +12,7 @@ import './styles/App.css';
 
 // Static/Stateless
 import { NavBar, PageLayout, Welcome } from './components';
-import { ItemsList, ItemInsert, ItemUpdate } from './pages';
+import { ItemInsert, ItemsList, ItemsTable, ItemUpdate } from './pages';
 
 // Content
 // import ItemsPage from './containers/ItemsPage';
@@ -26,6 +26,7 @@ class App extends Component {
                 {/* <React.Fragment> */}
                 <Route exact path={routes.HOME} component={Welcome} />
                 <Route exact path={routes.ITEMS} component={ItemsList} />
+                <Route exact path={`${routes.ITEMS}/table-test`} component={ItemsTable} />
                 {/* <Route exact path={routes.ITEM} component={ItemPage} /> */}
                 <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
                 <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
