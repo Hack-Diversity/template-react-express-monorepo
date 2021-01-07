@@ -23,10 +23,10 @@ const Wrapper = styled.div`
 
 const Table = ({ columns, data }) => {
     const {
-      getTableProps,
-      headerGroups,
-      rows,
-      prepareRow
+        getTableProps,
+        headerGroups,
+        rows,
+        prepareRow
     } = useTable({
       columns,
       data
@@ -34,36 +34,41 @@ const Table = ({ columns, data }) => {
 
     return (
         <MaUTable {...getTableProps()}>
-          <TableHead>
-            {headerGroups.map(headerGroup => (
-              <TableRow {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                  <TableCell {...column.getHeaderProps()}>
-                    {column.render('Header')}
-                  </TableCell>
+            <TableHead>
+                {headerGroups.map(headerGroup => (
+                    <TableRow {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            <TableCell {...column.getHeaderProps()}>
+                                {column.render('Header')}
+                            </TableCell>
+                        ))}
+                    </TableRow>
                 ))}
-              </TableRow>
-            ))}
-          </TableHead>
-          <TableBody>
-            {rows.map((row, i) => {
-              prepareRow(row)
-              return (
-                <TableRow {...row.getRowProps()}>
-                  {row.cells.map(cell => {
+            </TableHead>
+            <TableBody>
+                {rows.map((row, i) => {
+                    prepareRow(row)
+                    console.log(row);
                     return (
-                      <TableCell {...cell.getCellProps()}>
-                        {cell.render('Cell')}
-                      </TableCell>
+                        <TableRow
+                            data-row-item-id={row.values._id}
+                            {...row.getRowProps()}
+                        >
+                            {row.cells.map(cell => {
+                                console.log(cell);
+                                return (
+                                    <TableCell {...cell.getCellProps()}>
+                                        {cell.render('Cell')}
+                                    </TableCell>
+                                )
+                            })}
+                        </TableRow>
                     )
-                  })}
-                </TableRow>
-              )
-            })}
-          </TableBody>
+                })}
+            </TableBody>
         </MaUTable>
-      )
-  };
+    )
+};
 
 class ItemsTable extends Component {
 
@@ -206,15 +211,15 @@ class ItemsTable extends Component {
             <Wrapper>
                 <CssBaseline />
                 {(
-                    (items || []).length > 0 // defeats the purpose of using `isLoading` prop?
+                    (items || []).length > 0
                 ) ? (
-                        <Table
-                            data={items}
-                            columns={columns}
-                        />
-                    ) : (
-                        `No items to render... :(`
-                    )}
+                    <Table
+                        data={items}
+                        columns={columns}
+                    />
+                ) : (
+                    `No items to render... :(`
+                )}
             </Wrapper>
         );
     }
@@ -230,5 +235,3 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsTable);
-
-
