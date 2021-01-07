@@ -3,39 +3,46 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
-// Constants/Styles
+// Constants
 import * as actions from './actions';
 import { routes } from './constants';
+
+// Styles
+import { CssBaseline } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
 // Static/Stateless
-import { NavBar, PageLayout, Welcome } from './components';
-import { ItemInsert, ItemsList, ItemsTable, ItemUpdate } from './pages';
+import {
+    NavBar,
+    PageLayout,
+    Welcome
+} from './components';
 
-// Content
-// import ItemsPage from './containers/ItemsPage';
-// import ItemPage from './containers/ItemPage';
+// Pages
+import {
+    ItemInsert,
+    ItemsList,
+    ItemsTable,
+    ItemUpdate
+} from './pages';
 
 class App extends Component {
     render() {
 
         const publicViews = (
             <Switch>
-                {/* <React.Fragment> */}
                 <Route exact path={routes.HOME} component={Welcome} />
                 <Route exact path={routes.ITEMS} component={ItemsList} />
-                <Route exact path={`${routes.ITEMS}/table-test`} component={ItemsTable} />
-                {/* <Route exact path={routes.ITEM} component={ItemPage} /> */}
+                <Route exact path={`${routes.ITEMS}/react-table-v6`} component={ItemsTable} />
                 <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
                 <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
-                {/* </React.Fragment> */}
             </Switch>
         );
 
         return (
             <Router>
+                <CssBaseline />
                 <NavBar />
                 <div className="app--main">
                     <PageLayout />
