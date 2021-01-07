@@ -4,7 +4,33 @@
 Some _really_ great instructions and stuff...eventually.
 
 ## Installing Node Packages
-TBD:
+_TBD:_
+
+Required Versions:
+- Node.js: v10.14.2
+- Either
+--- npm: v6.4.1
+--- yarn: v1.22.5
+
+Upgrading versions:
+- Node.js
+```
+TODO
+```
+
+- npm
+```
+TODO
+```
+
+- yarn
+```
+brew upgrade yarn
+```
+or
+```
+curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+```
 
 ## Setting up MongoDB
 
@@ -40,8 +66,9 @@ $ brew services start mongodb
 Create and name database:
 ```
 $ mongo
-> use database-name
+> use items
 ```
+_(In this case, `items` is the name of the database that we will be creating and using for this app.)_
 
 ## Starting the Node Server
 In new tab/window:
@@ -50,12 +77,9 @@ $ cd server/
 ```
 then run either:
 ```
-$ node index.js
+$ yarn server
 ```
-or:
-```
-$ npx nodemon index.js
-```
+_(Note: this is running the `server` command defined in `server/package.json`.)_
 
 ## References
 - [How to create your first MERN (MongoDB, Express JS, React JS and Node JS) Stack](https://medium.com/swlh/how-to-create-your-first-mern-mongodb-express-js-react-js-and-node-js-stack-7e8b20463e66)

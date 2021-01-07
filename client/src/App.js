@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Constants/Styles
 import * as actions from './actions';
-import * as routes from './constants';
+import { routes } from './constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
@@ -19,34 +19,32 @@ import { ItemsList, ItemInsert, ItemUpdate } from './pages';
 // import ItemPage from './containers/ItemPage';
 
 class App extends Component {
-  render() {
+    render() {
 
-    const publicViews = (
-      <Switch>
-        {/* <React.Fragment> */}
-        <Route exact path={routes.HOME} component={Welcome} />
-        <Route exact path={routes.ITEMS} component={ItemsList} />
-        <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
-        <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
-        {/* <Route exact path={routes.ITEM_DELETE} component={ItemDelete} /> */}
-        {/* <Route exact path={routes.ITEMS} component={ItemsPage} />
-        <Route exact path={routes.ITEM} component={ItemPage} /> */}
-        {/* </React.Fragment> */}
-      </Switch>
-    );
+        const publicViews = (
+            <Switch>
+                {/* <React.Fragment> */}
+                <Route exact path={routes.HOME} component={Welcome} />
+                <Route exact path={routes.ITEMS} component={ItemsList} />
+                {/* <Route exact path={routes.ITEM} component={ItemPage} /> */}
+                <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
+                <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
+                {/* </React.Fragment> */}
+            </Switch>
+        );
 
-    return (
-      <Router>
-        <NavBar />
-        <div className="app--main">
-          <PageLayout />
-          <div className="view-container">
-            {publicViews}
-          </div>
-        </div>
-      </Router>
-    );
-  };
+        return (
+            <Router>
+                <NavBar />
+                <div className="app--main">
+                    <PageLayout />
+                    <div className="view-container">
+                        {publicViews}
+                    </div>
+                </div>
+            </Router>
+        );
+    };
 };
 
 const mapStateToProps = state => ({ ...state });

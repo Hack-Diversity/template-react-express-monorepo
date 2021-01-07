@@ -1,19 +1,22 @@
 // Public routes
-export const HOME = '/';
-export const ABOUT = '/about';
-export const SIGN_UP = '/signup';
-export const LOG_IN = '/login';
+const HOME = '/';
+const ABOUT = '/about';
+const SIGN_UP = '/signup';
+const LOG_IN = '/login';
 
 // Post routes
-export const ITEMS = '/items';
-export const ITEM = '/items/:id';
-export const ITEM_INSERT = '/item/create';
-export const ITEM_UPDATE = '/item/update';
-// export const ITEM_DELETE = '/item/delete';
+const ITEMS = '/items';
+const ITEM = '/item/:id';
+const ITEM_INSERT = '/item/create';
+const ITEM_UPDATE = '/item/update/:id';
 
-// User routes
-// export const ACCOUNT = '/account';
-// export const USERS = '/users';
-// export const USER = '/users/:id';
-// export const USER_ITEMS = '/users/:id/items';
-// export const LOG_OUT = '/logout';
+export const routes = {
+    HOME,
+    ABOUT,
+    SIGN_UP,
+    LOG_IN,
+    ITEMS,
+    ITEM,
+    ITEM_INSERT,
+    ITEM_UPDATE,
+};

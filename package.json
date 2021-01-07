@@ -1,0 +1,32 @@
+{
+    "name": "react-redux-template",
+    "description": "An example app using the MERN stack, with the main branch using React and Redux.",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": ">=10.14.2",
+        "npm": ">=6.4.1",
+        "yarn": ">=1.22.5"
+    },
+    "scripts": {
+        "startDev": "cd ./server && npm run server && cd ../client && npm run start"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@upstatement/prettier-config": "^0.3.0"
+    }
+}
