@@ -4,10 +4,10 @@ applications:
       phases:
         preBuild:
           commands:
+            - npm install -g yarn@1.22.10 # Update to Yarn 1.22.10
             - yarn install
         build:
           commands:
-            - nvm use $VERSION_NODE_10 # Use NodeJs version 10 LTS
             - yarn run build
       artifacts:
         baseDirectory: build
