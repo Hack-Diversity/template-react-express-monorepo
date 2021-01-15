@@ -7,20 +7,21 @@ import Links from './Links';
 const Container = styled.div.attrs({
     className: 'container',
 })`
-  max-width: 100%;
-  padding-left: 0px;
-  padding-right: 0px;
+    max-width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
 `;
 
 const Nav = styled.nav.attrs({
     className: 'navbar navbar-expand-lg navbar-dark bg-dark',
 })`
-  margin-bottom: 20px;
-`;
+    margin-bottom: 20px;
+    max-height: 5em;
 
-const linkStyles = {
-    marginLeft: '25vw',
-};
+    @media screen and (min-width: 992px) {
+        padding: 0.5em 25%;
+    }
+`;
 
 const logoStyles = {
     height: '40px',
@@ -32,7 +33,7 @@ class NavBar extends Component {
         return (
             <Container>
                 <Nav>
-                    <Logo linkStyles={linkStyles} logoStyles={logoStyles} />
+                    <Logo logoStyles={logoStyles} />
                     <Links />
                 </Nav>
             </Container>
