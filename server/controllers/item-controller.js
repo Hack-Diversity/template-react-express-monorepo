@@ -44,7 +44,7 @@ getItemById = async (req, res) => {
     await Item.find({ _id: req.params.id }, (err, items) => {
         if (err) {
             console.error(`[Hack.Diversity React Template] - 400 in 'getItemById': ${err}`);
-            return res
+            throw res
                 .status(400)
                 .json({
                     success: false,
