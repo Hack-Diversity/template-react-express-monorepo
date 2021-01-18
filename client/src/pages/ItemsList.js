@@ -19,6 +19,11 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
     padding: 0 40px 40px 40px;
+
+    @media screen and (max-width: 420px) {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
 `;
 
 const Table = ({ columns, data }) => {
