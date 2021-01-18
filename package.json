@@ -28,5 +28,9 @@
     },
     "devDependencies": {
         "@upstatement/prettier-config": "^0.3.0"
+    },
+    "dependencies": {
+        "node-notifier": "^8.0.1",
+        "object-path": "^0.11.5"
     }
 }

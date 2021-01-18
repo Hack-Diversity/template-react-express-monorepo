@@ -19,6 +19,11 @@ const Wrapper = styled.div.attrs({
 const Label = styled.label`
     margin: 5px;
     max-width: 30%;
+
+    @media screen and (max-width: 420px) {
+        height: auto;
+        max-width: 75%;
+    }
 `;
 
 const InputText = styled.input.attrs({
@@ -27,21 +32,32 @@ const InputText = styled.input.attrs({
     margin: 5px auto;
     max-width: 30%;
     text-align: center;
+
+    @media screen and (max-width: 420px) {
+        height: auto;
+        max-width: 75%;
+    }
 `;
 
 const Fieldset = styled.fieldset.attrs({
     className: 'form-control',
 })`
+    background-color: transparent;
     border-color: transparent;
     margin: 1em auto 0.5em;
     max-width: 50%;
     min-height: 6em;
+
+    @media screen and (max-width: 420px) {
+        height: auto;
+        max-width: 75%;
+    }
 `;
 
 const DayInput = styled.input.attrs({
     className: '',
 })`
-    margin: 5px auto;
+    margin: 5px 5px 5px auto;
     text-align: center;
 `;
 
@@ -177,16 +193,16 @@ class ItemInsert extends Component {
                         <React.Fragment
                             key={day}
                         >
-                            <DayInput
-                                type="checkbox"
-                                id={day}
-                                value={day}
-                                onChange={this.handleChangeDays}
-                                checked={typeof daysOfWeek[day] === "string"}
-                            />
                             <Label
                                 htmlFor={day}
                             >
+                                <DayInput
+                                    type="checkbox"
+                                    id={day}
+                                    value={day}
+                                    onChange={this.handleChangeDays}
+                                    checked={typeof daysOfWeek[day] === "string"}
+                                />
                                 { DAYS_OF_WEEK[day] }
                             </Label>
                         </React.Fragment>
