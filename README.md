@@ -7,4 +7,4 @@ Wondering how to get this thing working? Well, do we have the READMEs for you!
 
 ## Deployment
 -  [Amplify](/docs/amplify/README.md)
--  [Amplify](/docs/beanstalk/README.md)
+-  [Beanstalk](/docs/beanstalk/README.md)
