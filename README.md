@@ -4,3 +4,7 @@
 Wondering how to get this thing working? Well, do we have the READMEs for you!
 - [server](server/README.md)
 - [client](client/README.md)
+
+## Deployment
+-  [Amplify](/docs/amplify/README.md)
+-  [Amplify](/docs/beanstalk/README.md)
