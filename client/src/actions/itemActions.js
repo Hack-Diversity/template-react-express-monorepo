@@ -31,7 +31,7 @@ export const fetchSingleItem = (itemId) => {
 
         return api.getItemById(itemId)
             .then(resp => {
-                console.log("getItemById: resp");
+                console.log("getItemByIsbn: resp");
                 console.log(resp);
                 if (resp.data.success) {
                     const { item } = resp.data;
@@ -82,7 +82,7 @@ export const updateSingleItem = item => {
     return (dispatch) => {
         dispatch({ type: types.LOADING_SINGLE_ITEM });
 
-        return api.updateItemById(item._id, item)
+        return api.updateItemById(item.isbn, item)
             .then(resp => {
                 console.log("updateItem: resp");
                 console.log(resp);
@@ -91,7 +91,7 @@ export const updateSingleItem = item => {
                     dispatch({
                         type: types.UPDATE_SINGLE_ITEM,
                         item: {
-                            _id: resp.data.id,
+                            isbn: resp.data.id,
                             ...newItem
                         }
                     });

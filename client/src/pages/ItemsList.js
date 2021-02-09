@@ -55,7 +55,7 @@ const Table = ({ columns, data }) => {
                     prepareRow(row)
                     return (
                         <TableRow
-                            data-row-item-id={row.values._id}
+                            data-row-item-isbn={row.values.isbn}
                             {...row.getRowProps()}
                         >
                             {row.cells.map(cell => {
@@ -104,75 +104,94 @@ class ItemsTable extends Component {
 
         const columns = [
             {
-                Header: 'ID',
-                accessor: '_id',
+                Header: 'isbn',
+                accessor: 'isbn',
                 // filterable: true,
                 Cell: props => {
                     console.log(props);
                     const { original } = props.cell.row;
                     return (
-                        <span data-item-id={original._id}>
+                        <Link
+                            data-update-isbn={original.isbn}
+                            to={`/item/${props.value}`}
+                        >
+                        <span data-item-isbn={original.isbn}>
                             {props.value}
                         </span>
+                        </Link>
                     )
                 }
             },
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: 'Title',
+                accessor: 'title',
                 // filterable: true,
                 Cell: props => {
                     const { original } = props.cell.row;
                     return (
-                        <span data-name={original.name}>
+                        <span data-title={original.title}>
                             {props.value}
                         </span>
                     );
                 }
             },
             {
-                Header: 'Day(s)',
-                accessor: 'daysOfWeek',
+                Header: 'Author',
+                accessor: 'author',
                 // filterable: true,
                 Cell: props => {
-                    const { daysOfWeek } = props.cell.row.original;
-                    let daysToDisplay = "";
-                    if (daysOfWeek && typeof daysOfWeek === "object") {
-                        for (const day in daysOfWeek) {
-                            daysToDisplay = daysToDisplay === "" ? daysOfWeek[day] : `${daysToDisplay}, ${daysOfWeek[day]}`;
-                        }
-
-                    }
+                    const { original } = props.cell.row;
                     return (
-                        <span
-                            data-daysofweek={daysOfWeek && JSON.stringify(daysOfWeek)}
-                            data-daysofweek-by-id={props.value}
-                        >
-                            {daysToDisplay || "-"}
+                        <span data-author={original.author}>
+                            {props.value}
                         </span>
                     );
                 }
             },
             {
-                Header: 'Timeframe',
-                accessor: 'timeframeNote',
+                Header: 'Publication Year',
+                accessor: 'publication_year',
                 Cell: props => {
                     const { original } = props.cell.row;
                     return (
-                        <span data-timeframe={original.timeframeNote}>
+                        <span data-publication-year={original.publication_year}>
                             {props.value || "-"}
                         </span>
                     );
                 },
             },
             {
-                Header: 'Priority',
-                accessor: 'priority',
+                Header: 'Publisher',
+                accessor: 'publisher',
+                Cell: props => {
+                    const { original } = props.cell.row;
+                    return (
+                        <span data-publisher={original.publisher}>
+                            {props.value || "-"}
+                        </span>
+                    );
+                },
+            },
+            {
+                Header: 'Copies',
+                accessor: 'copies',
+                Cell: props => {
+                    const { original } = props.cell.row;
+                    return (
+                        <span data-copies={original.copies}>
+                            {props.value || "-"}
+                        </span>
+                    );
+                },
+            },
+            {
+                Header: 'Available',
+                accessor: 'available',
                 // filterable: true,
                 Cell: props => {
                     const { original } = props.cell.row;
                     return (
-                        <span data-priority={original.priority}>
+                        <span data-available={original.available}>
                             {props.value}
                         </span>
                     );
@@ -185,7 +204,7 @@ class ItemsTable extends Component {
                     const { original } = props.cell.row;
                     return (
                         <Link
-                            data-update-id={original._id}
+                            data-update-isbn={original.isbn}
                             to={`/item/update/${props.value}`}
                         >
                             Update Item
@@ -199,9 +218,9 @@ class ItemsTable extends Component {
                 Cell: props => {
                     const { original } = props.cell.row;
                     return (
-                        <span data-delete-id={original._id}>
+                        <span data-delete-isbn={original.isbn}>
                             <DeleteButton
-                                id={original._id}
+                                isbn={original.isbn}
                                 onDelete={this.handleRemoveItem}
                             />
                         </span>

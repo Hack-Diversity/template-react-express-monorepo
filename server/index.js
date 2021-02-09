@@ -16,10 +16,15 @@ app.use(bodyParser.json());
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    book = db.collection('books').findOne({ isbn: "0671888587"});
+    book.then((abc) => {
+        console.log("book", abc)
+        res.send(abc);
+    });
 });
 
-app.use('/api', itemRouter);
+
+app.use('/books', itemRouter);
 
 app.listen(apiPort, () => {
     console.log(`[Hack.Diversity React Template] - Server running on port ${apiPort}`);

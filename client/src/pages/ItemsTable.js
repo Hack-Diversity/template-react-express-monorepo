@@ -57,12 +57,12 @@ class ItemsList extends Component {
                 }
             },
             {
-                Header: 'Name',
-                accessor: 'name',
+                Header: 'Title',
+                accessor: 'title',
                 filterable: true,
                 Cell: props => {
                     return (
-                        <span data-name={props.original.name}>
+                        <span data-title={props.original.title}>
                             {props.value}
                         </span>
                     );

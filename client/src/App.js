@@ -24,7 +24,8 @@ import {
     ItemInsert,
     ItemsList,
     ItemsTable,
-    ItemUpdate
+    ItemUpdate,
+    ItemDetails
 } from './pages';
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
                 <Route exact path={`${routes.ITEMS}/react-table-v6`} component={ItemsTable} />
                 <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
                 <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
+                <Route exact path={routes.ITEM} component={ItemDetails} />
             </Switch>
         );
 

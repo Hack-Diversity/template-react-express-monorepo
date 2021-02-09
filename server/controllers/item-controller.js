@@ -1,6 +1,7 @@
 /* eslint-disable no-undef, arrow-body-style */
 const Item = require('../models/item-model');
 
+
 getItems = async (req, res) => {
     await Item.find({}, (err, items) => {
         if (err) {
@@ -40,8 +41,9 @@ getItems = async (req, res) => {
     });
 };
 
-getItemById = async (req, res) => {
-    await Item.find({ _id: req.params.id }, (err, items) => {
+getItemByIsbn = async (req, res) => {
+    console.log(req.params.isbn)
+    await Item.find({isbn: req.params.isbn}, (err, items) => {
         if (err) {
             console.error(`[Hack.Diversity React Template] - 400 in 'getItemById': ${err}`);
             throw res
@@ -91,7 +93,7 @@ createItem = (req, res) => {
     }
 
     const item = new Item(body);
-
+    
     if (!item) {
         console.error(`[Hack.Diversity React Template] - 400 in 'createItem': 'item' is malformed.`);
         return res
@@ -113,7 +115,7 @@ createItem = (req, res) => {
                 .status(201)
                 .json({
                     success: true,
-                    id: item._id,
+                    isbn: item.isbn,
                     message: 'Item created!',
                 });
         })
@@ -150,18 +152,19 @@ updateItem = (req, res) => {
     }
 
     const itemForUpdate = {
-        _id: req.params.id,
-        name: body.name,
-        daysOfWeek: body.daysOfWeek,
-        timeframeNote: body.timeframeNote,
-        priority: body.priority,
-        content: body.content,
+        isbn: req.params.isbn,
+        title: body.title,
+        author: body.author,
+        publication_year: body.publication_year,
+        publisher: body.publisher,
+        copies: body.copies,
+        available: body.available,
     };
 
     // console.log('----------------------- updateItem: res -----------------------');
     // console.log(res);
 
-    return Item.updateOne({ _id: req.params.id }, itemForUpdate, (err, writeOpRes) => {
+    return Item.updateOne({ isbn: req.params.isbn }, itemForUpdate, (err, writeOpRes) => {
         if (err) {
             console.error(`[Hack.Diversity React Template] - 404 in 'updateItem': Item not found!`);
             console.error(err);
@@ -186,7 +189,7 @@ updateItem = (req, res) => {
             .status(200)
             .json({
                 success: true,
-                id: req.params.id,
+                isbn: req.params.isbn,
                 message: 'Item updated!',
                 writeOpResult: res
             });
@@ -198,7 +201,7 @@ updateItem = (req, res) => {
 };
 
 deleteItem = async (req, res) => {
-    await Item.findOneAndDelete({ _id: req.params.id }, (err, item) => {
+    await Item.findOneAndDelete({ isbn: req.params.isbn }, (err, item) => {
         if (err) {
             console.error(`[Hack.Diversity React Template] - 400 in 'deleteItem': ${err}`);
             return res
@@ -234,7 +237,7 @@ deleteItem = async (req, res) => {
 
 module.exports = {
     getItems,
-    getItemById,
+    getItemByIsbn,
     createItem,
     updateItem,
     deleteItem,

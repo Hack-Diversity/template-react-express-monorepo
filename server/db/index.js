@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
+    .connect('mongodb+srv://am4:MM412Proj@cluster0.olht9.mongodb.net/library?retryWrites=true&w=majority'
+, { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message);
     });

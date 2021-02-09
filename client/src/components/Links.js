@@ -64,7 +64,7 @@ class Links extends Component {
                                 to="/items"
                                 className="nav-link"
                             >
-                                Items
+                                Books
                             </Link>
                         </Item>
                         <Item>
@@ -72,7 +72,7 @@ class Links extends Component {
                                 to="/item/create"
                                 className="nav-link"
                             >
-                                Create Item
+                                Admin
                             </Link>
                         </Item>
                         <Item>
