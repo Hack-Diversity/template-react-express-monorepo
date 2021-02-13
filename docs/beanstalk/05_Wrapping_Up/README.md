@@ -35,6 +35,13 @@ Postman)
 
 ## What's Next
 
+To delete all resources created by your deployment, run the `eb terminate <environment>` command.
+
+![eb terminate command on terminal](./images/eb_terminate_output.png)
+
+---
+
 Next up is to create your frontend using AWS Amplify. Make sure to note the API Gateway URL because it will be used in the Frontend deployment.
 
 [Amplify Deployment Documentation](../../amplify/README.md)
+
