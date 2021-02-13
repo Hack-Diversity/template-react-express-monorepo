@@ -37,4 +37,4 @@ Postman)
 
 Next up is to create your frontend using AWS Amplify. Make sure to note the API Gateway URL because it will be used in the Frontend deployment.
 
-[AWS Deployment](../../amplify/README.md)
+[Amplify Deployment Documentation](../../amplify/README.md)

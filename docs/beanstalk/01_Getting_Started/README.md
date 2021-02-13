@@ -37,3 +37,7 @@ Once installed check that the CLI is installed by running:
 eb --version
 EB CLI 3.19.3 (Python 3.8.5)
 ```
+
+---
+
+Next: [Creating EB Environment](../02_Creating_EB_Environment/README.md)

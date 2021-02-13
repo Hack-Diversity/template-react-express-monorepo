@@ -153,3 +153,5 @@ Now that you have network access to the database, you can use MongoDB Compass to
 
 ---
 Congrats! You now have loaded data into your Mongo database in the cloud. Feel free to remove your IP address entry from the Security Group to remove access to your Database server.
+
+Next: [Connecting the Backend to MongoDB](../04_Connecting_Backend_to_Mongo)

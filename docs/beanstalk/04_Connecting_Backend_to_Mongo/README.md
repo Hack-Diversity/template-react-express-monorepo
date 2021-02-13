@@ -13,4 +13,8 @@ MONGO_CONNECTION_STRING=<PRIVATE_CONNECTION_STRING> -e <EB_ENVIRONMENT>
 
 ![eb list and eb setenv commands on the terminal](./images/ebcli_setting_mongo_conn_string.png)
 
+---
+
 Once deployed, your backend server will be able to connect to your MongoDB Database.
+
+Next: [Wrapping Up](../05_Wrapping_Up/README.md)

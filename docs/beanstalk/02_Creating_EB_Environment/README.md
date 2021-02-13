@@ -82,3 +82,7 @@ This deployment create the following resources:
 ## Updating the Code
 
 Whenever you are ready to update your code on AWS. Run the `eb deploy` command. You can provide an environment name if you have more than one using `eb deploy <environment name>`.
+
+---
+
+Next:  [Setting Up Mongo](../03_Setting_Up_Mongo/README.md)
