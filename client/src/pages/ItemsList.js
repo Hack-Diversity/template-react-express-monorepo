@@ -73,7 +73,7 @@ const Table = ({ columns, data }) => {
     )
 };
 
-class ItemsTable extends Component {
+class ItemsList extends Component {
 
     componentDidMount() {
         console.log("ItemsList: props");
@@ -186,7 +186,7 @@ class ItemsTable extends Component {
                     return (
                         <Link
                             data-update-id={original._id}
-                            to={`/item/update/${props.value}`}
+                            to={`/item/update/${original._id}`}
                         >
                             Update Item
                         </Link>
@@ -237,4 +237,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemsTable);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsList);

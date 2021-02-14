@@ -33,10 +33,16 @@ const InputText = styled.input.attrs({
 const Fieldset = styled.fieldset.attrs({
     className: 'form-control',
 })`
+    background-color: transparent;
     border-color: transparent;
     margin: 1em auto 0.5em;
     max-width: 50%;
     min-height: 6em;
+
+    @media screen and (max-width: 420px) {
+        height: auto;
+        max-width: 75%;
+    }
 `;
 
 const DayInput = styled.input.attrs({

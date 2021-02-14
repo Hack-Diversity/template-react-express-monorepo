@@ -61,6 +61,8 @@ getItemById = async (req, res) => {
                 });
         }
         console.log(`[Hack.Diversity React Template] - 200 in 'getItemById': Item fetched!`);
+        console.log('----------------------- getItemById: res -----------------------');
+        console.log(res);
         return res
             .status(200)
             .json({
@@ -133,10 +135,12 @@ createItem = (req, res) => {
         });
 };
 
-updateItem = (req, res) => {
-    const body = req.body;
+updateItem = async (req, res) => {
     // console.log('----------------------- updateItem: req -----------------------');
     // console.log(req);
+    // console.log('----------------------- updateItem: res -----------------------');
+    // console.log(res);
+    const body = req.body;
     // console.log('----------------------- updateItem: body -----------------------');
     // console.log(body);
     if (!body) {
@@ -158,10 +162,7 @@ updateItem = (req, res) => {
         content: body.content,
     };
 
-    // console.log('----------------------- updateItem: res -----------------------');
-    // console.log(res);
-
-    return Item.updateOne({ _id: req.params.id }, itemForUpdate, (err, writeOpRes) => {
+    await Item.updateOne({ _id: req.params.id }, itemForUpdate, (err, writeOpRes) => {
         if (err) {
             console.error(`[Hack.Diversity React Template] - 404 in 'updateItem': Item not found!`);
             console.error(err);
@@ -178,8 +179,8 @@ updateItem = (req, res) => {
         // console.log(item);
         return writeOpRes;
     })
-    .then(res => {
-        // console.log('----------------------- updateItem - findOne: res -----------------------');
+    .then(result => {
+        // console.log('----------------------- updateItem - updateOne: res -----------------------');
         // console.log(res);
         console.log(`[Hack.Diversity React Template] - 200 in 'updateItem': Item updated!`);
         return res
@@ -188,7 +189,7 @@ updateItem = (req, res) => {
                 success: true,
                 id: req.params.id,
                 message: 'Item updated!',
-                writeOpResult: res
+                writeOpResult: result
             });
     }).catch(err => {
         console.error(`[Hack.Diversity React Template] - caught error in 'updateItem': ${err}`);
