@@ -9,6 +9,8 @@
         "yarn": ">=1.22.5"
     },
     "scripts": {
+        "startApi": "cd ./server && npm run server",
+        "startReact": "cd ./client && npm run start",
         "startDev": "cd ./server && npm run server && cd ../client && npm run start",
         "postinstall": "(cd server && npm install); (cd client && npm install)"
     },
