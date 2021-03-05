@@ -28,4 +28,4 @@ const Item = new Schema(
     { timestamps: true },
 );
 
-module.exports = mongoose.model('item', Item);
+module.exports = mongoose.model('books', Item);

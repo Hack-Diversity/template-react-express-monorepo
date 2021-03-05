@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/927c9a97-1381-48af-a5a2-62c67cc762bb/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/api-hack-server",
+    "appService.deploySubpath": "."
+}
