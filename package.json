@@ -9,8 +9,7 @@
         "yarn": ">=1.22.5"
     },
     "scripts": {
-        "startDev": "cd ./server && npm run server && cd ../client && npm run start",
-        "postinstall": "(cd server && npm install); (cd client && npm install)"
+        "startDev": "cd ./server && npm run server && cd ../client && npm run start"
     },
     "eslintConfig": {
         "extends": "react-app"
