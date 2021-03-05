@@ -9,7 +9,7 @@
         "yarn": ">=1.22.5"
     },
     "scripts": {
-        "server": "npx nodemon index.js"
+        "startDev": "cd ./server && npm run server && cd ../client && npm run start"
     },
     "eslintConfig": {
         "extends": "react-app"
