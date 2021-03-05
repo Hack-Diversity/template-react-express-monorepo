@@ -1,0 +1,26 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+        "node": ">=10.14.2",
+        "npm": ">=6.4.1",
+        "yarn": ">=1.22.5"
+    },
+    "scripts": {
+        "debugServer": "npx nodemon inspect index.js",
+        "server": "npx nodemon index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.9.1",
+        "nodemon": "^2.0.2"
+    }
+}

@@ -9,7 +9,12 @@
         "yarn": ">=1.22.5"
     },
     "scripts": {
+<<<<<<< HEAD
         "startDev": "cd ./server && npm run server && cd ../client && npm run start"
+=======
+        "startDev": "cd ./server && npm run server && cd ../client && npm run start",
+        "postinstall": "(cd server && npm install); (cd client && npm install)"
+>>>>>>> parent of f307b1c (moved server into / and changed port)
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -31,11 +36,6 @@
     },
     "dependencies": {
         "node-notifier": "^8.0.1",
-        "object-path": "^0.11.5",
-        "body-parser": "^1.19.0",
-        "cors": "^2.8.5",
-        "express": "^4.17.1",
-        "mongoose": "^5.9.1",
-        "nodemon": "^2.0.2"
+        "object-path": "^0.11.5"
     }
 }
