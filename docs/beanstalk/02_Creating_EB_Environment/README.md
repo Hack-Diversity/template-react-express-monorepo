@@ -2,7 +2,7 @@
 
 Now that you have the EB CLI  installed, you will be able to push your Backend (Server) code to Elastic Beanstalk in your AWS account. 
 
-Note that all of the following will take place withing the "server" directory.
+Note that all of the following will take place withing the `server` directory.
 
 ## Initializing Your Elastic Beanstalk Project
 
@@ -10,7 +10,7 @@ Initializing your Elastic Beanstalk project will create a `.elasticbeanstalk` fo
 
 
 <br>
-1) Run the "eb init" command which will prompt you for a few questions. You make your selection by typing the matching number or character and pressing "Enter".  
+1) Run the `eb init` command which will prompt you for a few questions. You make your selection by typing the matching number or character and pressing "Enter".  
  Make sure to select the "US East (N. Virginia)" option which should be #1.
 
 ![Running "eb init" command and selecting Option 1 <US East N. Virginia>)](./images/EB_CLI_INIT_1_Select_Region.png)
@@ -29,20 +29,19 @@ Initializing your Elastic Beanstalk project will create a `.elasticbeanstalk` fo
 
 
 <br>
-4) Now you will be asked if you are "using Node.js", enter 'y` for "yes". Next, choose the "Node.js 12" option which should be #1.
+4) Now you will be asked if you are "using Node.js", enter `y` or "yes". Next, choose the "Node.js 12" option which should be #1.
 
 ![Enter "y" to confirm that you are using "Node.js" and select "Node.js 12"](./images/EB_CLI_INIT_4_Configure_Platform.png)
 
 
 <br>
-5)  You will be prompted to create an "SSH key pair". Enter 'y' to accept. For the name enter "cscl", it must be that name as it will be referenced during the deployment.
-You can ignore the warning about 
+5)  You will be prompted to create an "SSH key pair". Enter `y`to accept. When prompted for a name, you must enter the same name that was referenced earlier in the deployment. Since we used "CSCL" earlier, it should be "cscl".
 
 ![Enter 'y' to create an SSH key pair and enter the name "cscl"](./images/EB_CLI_INIT_5_SSH_Key_Setup.png)
 
 
 <br>
-6) You will be prompted to enter a passphrase. Press `Enter` two times to enter a <Blank> passphrase if you don't wish to use one. Setting a passphrase will require you to enter it whenever you attempt to connect to your server using SSH.
+6) You will be prompted to enter a passphrase. Press "Enter" two times to enter a blank passphrase if you don't wish to use one. Setting a passphrase will require you to enter it whenever you attempt to connect to your server using SSH.
 
 
 ![Entering SSH passphrase. Setting it to <Blank> by pressing Enter twice.](./images/EB_CLI_INIT_6_SSH_Key_Passphrase.png)

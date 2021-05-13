@@ -4,10 +4,10 @@ Here is an helpful [video](https://www.youtube.com/watch?v=ADh_OFBfdEE) explaini
 
 ## Updating Your Backend Environment
 
-Retrieve the Private IP connection string you created in the previous sections. Make sure that you are in the "server" directory and use the `eb  setenv` command to update your backend server's environment variables. Note that you can use `eb list` to view the available environments.
+Retrieve the Private IP connection string you created in the previous sections. Make sure that you are in the `server` directory and use the `eb  setenv` command to update your backend server's environment variables. Note that you can use `eb list` to view the available environments.
 
 The format is:
-```
+```shell
 MONGO_CONNECTION_STRING=<PRIVATE_CONNECTION_STRING> -e <EB_ENVIRONMENT>
 ```
 

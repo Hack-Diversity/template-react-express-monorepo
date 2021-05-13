@@ -147,7 +147,7 @@ Now that you have network access to the database, you can use MongoDB Compass to
 
 
 <br>
-7) Select the JSON file provided to you in the [template repository](https://github.com/Hack-Diversity/template-mini-project-db) or your own MongoDB backup. Enable the Options that you would like, and click "IMPORT".
+7) Select the JSON file provided to you in the ![template repository](https://github.com/Hack-Diversity/template-mini-project-db) or your own MongoDB backup. Enable the Options that you would like, and click "IMPORT".
 
 ![MongoDB](./images/Mongo_Compass/7_Mongo_Compass_import_file_submit.png)
 
