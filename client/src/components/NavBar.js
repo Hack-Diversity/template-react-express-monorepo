@@ -21,12 +21,35 @@ const Nav = styled.nav.attrs({
     }
 `;
 
+const navBarItems = [
+    {
+        name: "Items",
+        toPathname: "/items",
+        className: "nav-link"
+    },
+    {
+        name: "Create Item",
+        toPathname: "/item/create",
+        className: "nav-link"
+    },
+    {
+        name: "Items (react-table-v6)",
+        toPathname: "/items/react-table-v6",
+        className: "nav-link"
+    },
+    {
+        name: "Items (plain)",
+        toPathname: "/items/items-plain",
+        className: "nav-link"
+    },
+];
+
 class NavBar extends Component {
     render() {
         return (
             <Container>
                 <Nav>
-                    <Links />
+                    <Links navBarItems={navBarItems} />
                 </Nav>
             </Container>
         );

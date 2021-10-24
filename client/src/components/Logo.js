@@ -13,7 +13,7 @@ class Logo extends Component {
         const { logoStyles } = this.props;
 
         return (
-            <Wrapper href="https://localtest:8000">
+            <Wrapper href="https://localhost:8000">
                 <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" />
             </Wrapper>
         );

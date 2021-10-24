@@ -45,6 +45,8 @@ const logoStyles = {
 
 class Links extends Component {
     render() {
+        const { navBarItems } = this.props;
+
         return (
             <React.Fragment>
                 <HomeWrapper>
@@ -59,27 +61,16 @@ class Links extends Component {
                 </HomeWrapper>
                 <Collapse>
                     <List>
-                        <Item>
-                            <Link
-                                to="/items"
-                                className="nav-link"
-                            >
-                                Items
-                            </Link>
-                        </Item>
-                        <Item>
-                            <Link
-                                to="/item/create"
-                                className="nav-link"
-                            >
-                                Create Item
-                            </Link>
-                        </Item>
-                        <Item>
-                            <Link to="/items/react-table-v6" className="nav-link">
-                                Items (react-table-v6)
-                            </Link>
-                        </Item>
+                        {navBarItems.map((navBarItem) =>
+                            <Item>
+                                <Link
+                                    to={navBarItem.toPathname}
+                                    className={navBarItem.className}
+                                >
+                                    {navBarItem.name}
+                                </Link>
+                            </Item>
+                        )}
                     </List>
                 </Collapse>
             </React.Fragment>
