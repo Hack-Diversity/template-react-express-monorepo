@@ -32,16 +32,17 @@ const navBarItems = [
         toPathname: "/item/create",
         className: "nav-link"
     },
-    {
-        name: "Items (react-table-v6)",
-        toPathname: "/items/react-table-v6",
-        className: "nav-link"
-    },
-    {
-        name: "Items (plain)",
-        toPathname: "/items/items-plain",
-        className: "nav-link"
-    },
+    // ----- Moved these to Items -----
+    // {
+    //     name: "Items (react-table-v6)",
+    //     toPathname: "/items/react-table-v6",
+    //     className: "nav-link"
+    // },
+    // {
+    //     name: "Items (plain)",
+    //     toPathname: "/items/items-plain",
+    //     className: "nav-link"
+    // },
 ];
 
 class NavBar extends Component {

@@ -62,7 +62,7 @@ class Links extends Component {
                 <Collapse>
                     <List>
                         {navBarItems.map((navBarItem) =>
-                            <Item>
+                            <Item key={navBarItem.name}>
                                 <Link
                                     to={navBarItem.toPathname}
                                     className={navBarItem.className}

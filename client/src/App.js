@@ -22,19 +22,20 @@ import {
 // Pages
 import {
     ItemInsert,
-    ItemsList,
-    ItemsTable,
+    Items,
     ItemUpdate
 } from './pages';
 
 class App extends Component {
     render() {
 
+        // TODO: maybe only need one route for Items?
         const publicViews = (
             <Switch>
                 <Route exact path={routes.HOME} component={Welcome} />
-                <Route exact path={routes.ITEMS} component={ItemsList} />
-                <Route exact path={`${routes.ITEMS}/react-table-v6`} component={ItemsTable} />
+                <Route exact path={routes.ITEMS} component={Items} />
+                <Route exact path={`${routes.ITEMS}/items-plain`} component={Items} />
+                <Route exact path={`${routes.ITEMS}/react-table-v6`} component={Items} />
                 <Route exact path={routes.ITEM_INSERT} component={ItemInsert} />
                 <Route exact path={routes.ITEM_UPDATE} component={ItemUpdate} />
             </Switch>
