@@ -1,3 +1,8 @@
+## Quick Links
+[Material-UI v4 docs](https://v4.mui.com/getting-started/usage/)
+[react-table docs](https://react-table.tanstack.com/docs/overview)
+[react-table-v6 branch with docs](https://github.com/tannerlinsley/react-table/tree/v6)
+
 # --- From "Create React App" README ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
