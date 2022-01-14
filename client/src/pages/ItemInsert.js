@@ -73,13 +73,6 @@ const CancelButton = styled.a.attrs({
 
 class ItemInsert extends Component {
   constructor(props) {
-    /**
-     * Currently deprecated and now known as the "legacy context":
-     * - https://reactjs.org/docs/legacy-context.html
-     *
-     * TODO: refactor to use new Context API:
-     * - https://reactjs.org/docs/context.html
-     */
     super(props);
     this.state = {
       name: '',

@@ -57,7 +57,6 @@ const CancelButton = styled.a.attrs({
 
 class ItemUpdate extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = {
       _id: '',
@@ -70,7 +69,6 @@ class ItemUpdate extends Component {
   }
 
   componentDidMount() {
-    debugger;
     const itemId = this.props.match.params.id;
     this.fetchSingleItem(itemId).then(resp => {
       const { item } = resp.data;
