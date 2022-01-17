@@ -98,12 +98,14 @@ createItem = (req, res) => {
       });
     })
     .catch(err => {
-      console.error(
-        `[Hack.Diversity React Template] - caught error in 'createItem': ${err.errors.name}`,
-      );
+      console.error(`[Hack.Diversity React Template] - caught error in 'createItem': ${err.errors.name}`);
       Object.keys(err.errors).forEach(errorKey => {
-        console.error(`ERROR for: ${errorKey}`);
-        console.error(`=> ${((err.errors[errorKey] || {}).properties || {}).message}`);
+        console.error(`[Hack.Diversity React Template] ERROR for: ${errorKey}`);
+        console.error(
+          `[Hack.Diversity React Template] => ${
+            ((err.errors[errorKey] || {}).properties || {}).message
+          }`,
+        );
       });
       return res.status(400).json({
         success: false,
@@ -115,14 +117,8 @@ createItem = (req, res) => {
 
 updateItem = async (req, res) => {
   const body = req.body;
-  // console.log('----------------------- updateItem: req -----------------------');
-  // console.log(req);
-  // console.log('----------------------- updateItem: body -----------------------');
-  // console.log(body);
   if (!body) {
-    console.error(
-      `[Hack.Diversity React Template] - 400 in 'updateItem': You must provide an item to update.`,
-    );
+    console.error(`[Hack.Diversity React Template] - 400 in 'updateItem': You must provide an item to update.`);
     return res.status(400).json({
       success: false,
       error: 'You must provide an item to update.',

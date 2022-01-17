@@ -171,8 +171,8 @@ class ItemsTable extends Component {
         },
       },
       {
-        Header: '',
-        accessor: 'd',
+        Header: 'Update',
+        accessor: '_update',
         Cell: props => {
           const { original } = props.cell.row;
 

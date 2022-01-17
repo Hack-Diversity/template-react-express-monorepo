@@ -6,6 +6,7 @@ import logo from '../styles/assets/logo.svg';
 
 const Wrapper = styled.a.attrs({
   className: 'navbar-brand',
+  href: '/',
 })``;
 
 class Logo extends Component {
