@@ -30,7 +30,9 @@ const Table = ({ columns, data }) => {
         {headerGroups.map(headerGroup => (
           <TableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
+              <TableCell {...column.getHeaderProps()}>
+                {column.render('Header')}
+              </TableCell>
             ))}
           </TableRow>
         ))}
@@ -41,7 +43,11 @@ const Table = ({ columns, data }) => {
           return (
             <TableRow data-row-item-id={row.values._id} {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <TableCell {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>;
+                return (
+                  <TableCell {...cell.getCellProps()}>
+                    {cell.render('Cell')}
+                  </TableCell>
+                );
               })}
             </TableRow>
           );
