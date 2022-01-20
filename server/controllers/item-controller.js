@@ -98,7 +98,7 @@ createItem = (req, res) => {
       });
     })
     .catch(err => {
-      console.error(`[Hack.Diversity React Template] - caught error in 'createItem': ${err.errors.name}`);
+      console.error(`[Hack.Diversity React Template] - caught error in 'createItem': ${err.errors}`);
       Object.keys(err.errors).forEach(errorKey => {
         console.error(`[Hack.Diversity React Template] ERROR for: ${errorKey}`);
         console.error(
