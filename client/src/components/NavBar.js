@@ -4,57 +4,46 @@ import styled from 'styled-components';
 import Links from './Links';
 
 const Container = styled.div.attrs({
-    className: 'container',
+  className: 'container',
 })`
-    max-width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
+  max-width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
 `;
 
 const Nav = styled.nav.attrs({
-    className: 'navbar navbar-expand-lg navbar-dark bg-dark',
+  className: 'navbar navbar-expand-lg navbar-dark bg-dark',
 })`
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    @media screen and (min-width: 992px) {
-        padding: 0.5em 25%;
-    }
+  @media screen and (min-width: 992px) {
+    padding: 0.5em 25%;
+  }
 `;
 
 const navBarItems = [
-    {
-        name: "Items",
-        toPathname: "/items",
-        className: "nav-link"
-    },
-    {
-        name: "Create Item",
-        toPathname: "/item/create",
-        className: "nav-link"
-    },
-    // ----- Moved these to Items -----
-    // {
-    //     name: "Items (react-table-v6)",
-    //     toPathname: "/items/react-table-v6",
-    //     className: "nav-link"
-    // },
-    // {
-    //     name: "Items (plain)",
-    //     toPathname: "/items/items-plain",
-    //     className: "nav-link"
-    // },
+  {
+    name: 'Items',
+    toPathname: '/items',
+    className: 'nav-link',
+  },
+  {
+    name: 'Create Item',
+    toPathname: '/item/create',
+    className: 'nav-link',
+  },
 ];
 
 class NavBar extends Component {
-    render() {
-        return (
-            <Container>
-                <Nav>
-                    <Links navBarItems={navBarItems} />
-                </Nav>
-            </Container>
-        );
-    }
+  render() {
+    return (
+      <Container>
+        <Nav>
+          <Links navBarItems={navBarItems} />
+        </Nav>
+      </Container>
+    );
+  }
 }
 
 export default NavBar;

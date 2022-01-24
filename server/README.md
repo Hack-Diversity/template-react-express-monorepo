@@ -35,12 +35,16 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
 ## Setting up MongoDB
 
-### Install with Homebrew (MacOSx)
+### Install & Run
+
+#### Platform Agnostic
+You can follow the instructions on the MongoDB website here: https://docs.mongodb.com/manual/administration/install-community/
+
+#### Using Homebrew (Mac OSX only!)
 If you haven't previously installed mongodb:
 ```
 $ brew tap mongodb/brew
 $ brew install mongodb-community
-$ brew services start mongodb-community
 ```
 
 If you have a previous version of mongodb
@@ -50,19 +54,9 @@ $ brew uninstall mongodb
 
 $ brew tap mongodb/brew
 $ brew install mongodb-community
-$ brew services start mongodb-community
 ```
 
-Create directory for storing data:
-```
-$ mkdir -p /data/db
-```
-
-Execute MongoDB as service:
-```
-$ brew services start mongodb
-// this may not still be relevant?
-```
+### After getting the database set up
 
 Create and name database:
 ```

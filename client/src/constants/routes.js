@@ -11,12 +11,12 @@ const ITEM_INSERT = '/item/create';
 const ITEM_UPDATE = '/item/update/:id';
 
 export const routes = {
-    HOME,
-    ABOUT,
-    SIGN_UP,
-    LOG_IN,
-    ITEMS,
-    ITEM,
-    ITEM_INSERT,
-    ITEM_UPDATE,
+  HOME,
+  ABOUT,
+  SIGN_UP,
+  LOG_IN,
+  ITEMS,
+  ITEM,
+  ITEM_INSERT,
+  ITEM_UPDATE,
 };

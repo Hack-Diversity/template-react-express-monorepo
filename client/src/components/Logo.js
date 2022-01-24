@@ -5,24 +5,25 @@ import styled from 'styled-components';
 import logo from '../styles/assets/logo.svg';
 
 const Wrapper = styled.a.attrs({
-    className: 'navbar-brand',
+  className: 'navbar-brand',
+  href: '/',
 })``;
 
 class Logo extends Component {
-    render() {
-        const { logoStyles } = this.props;
+  render() {
+    const { logoStyles } = this.props;
 
-        return (
-            <Wrapper href="https://localhost:8000">
-                <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" />
-            </Wrapper>
-        );
-    }
+    return (
+      <Wrapper>
+        <img src={logo} className="app--logo" style={logoStyles} alt="React Logo" />
+      </Wrapper>
+    );
+  }
 }
 
 Logo.propTypes = {
-    linkStyles: PropTypes.object,
-    logoStyles: PropTypes.object,
+  linkStyles: PropTypes.object,
+  logoStyles: PropTypes.object,
 };
 
 export default Logo;
