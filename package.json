@@ -32,6 +32,6 @@
     },
     "dependencies": {
         "node-notifier": "^8.0.1",
-        "object-path": "^0.11.5"
+        "object-path": "^0.11.8"
     }
 }
