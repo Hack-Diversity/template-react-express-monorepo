@@ -1,6 +1,6 @@
 {
   "name": "react-template",
-  "description": "An example app using the MERN stack, with the main branch using React and Redux.",
+  "description": "An example app using the MERN stack, with the main branch using React.",
   "version": "0.1.0",
   "private": true,
   "engines": {
