@@ -1,37 +1,39 @@
 {
-    "name": "react-redux-template",
-    "description": "An example app using the MERN stack, with the main branch using React and Redux.",
-    "version": "0.1.0",
-    "private": true,
-    "engines": {
-        "node": ">=10.14.2",
-        "npm": ">=6.4.1",
-        "yarn": ">=1.22.5"
-    },
-    "scripts": {
-        "startDev": "cd ./server && yarn server && cd ../client && yarn start",
-        "postinstall": "(cd server && yarn install); (cd client && yarn install)"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "@upstatement/prettier-config": "^0.3.0"
-    },
-    "dependencies": {
-        "node-notifier": "^8.0.1",
-        "object-path": "^0.11.5"
-    }
+  "name": "react-template",
+  "description": "An example app using the MERN stack, with the main branch using React.",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=10.14.2",
+    "npm": ">=6.4.1",
+    "yarn": ">=1.22.5"
+  },
+  "scripts": {
+    "startDev": "concurrently \"cd ./server && yarn server\" \"cd ./client && yarn start\"",
+    "postinstall": "(cd server && yarn install); (cd client && yarn install)"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@upstatement/prettier-config": "^0.3.0",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "node-notifier": "^8.0.1",
+    "object-path": "^0.11.5"
+  }
 }
